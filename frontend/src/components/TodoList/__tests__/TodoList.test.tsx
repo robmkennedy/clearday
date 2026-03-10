@@ -2,7 +2,13 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TodoList } from '../TodoList';
-import { createAppWrapper } from '../../../test/test-utils';
+import {
+  createAppWrapper,
+  mockFetchSuccess,
+  mockFetchError,
+  mockFetchPending,
+  mockFetchWithHandlers
+} from '../../../test/test-utils';
 import type { Todo } from '@shared/types';
 
 /**
@@ -40,29 +46,31 @@ beforeEach(() => {
 
 afterEach(() => {
   global.fetch = originalFetch;
+  vi.useRealTimers();
 });
 
 describe('TodoList', () => {
   it('shows loading state initially', () => {
-    global.fetch = vi.fn().mockImplementation(
-      () => new Promise(() => {}) // Never resolves
-    );
+    vi.useFakeTimers();
+    global.fetch = mockFetchPending();
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
-    expect(screen.getByText('Loading todos...')).toBeInTheDocument();
+    // LoadingState has 200ms delay before showing
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
+
+    expect(screen.getByText('Loading tasks')).toBeInTheDocument();
   });
 
   it('shows error state when fetch fails', async () => {
-    global.fetch = vi.fn().mockResolvedValue({
-      ok: false,
-      status: 500,
-    });
+    global.fetch = mockFetchError(500);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
     await waitFor(() => {
-      expect(screen.getByText('Error loading todos.')).toBeInTheDocument();
+      expect(screen.getByText('Error loading todos')).toBeInTheDocument();
     });
 
     // Verify error state has alert role for accessibility
@@ -88,7 +96,7 @@ describe('TodoList', () => {
 
     // Wait for error state
     await waitFor(() => {
-      expect(screen.getByText('Error loading todos.')).toBeInTheDocument();
+      expect(screen.getByText('Error loading todos')).toBeInTheDocument();
     });
 
     // Click retry button
@@ -107,33 +115,31 @@ describe('TodoList', () => {
   });
 
   it('shows loading state with status role for accessibility', () => {
-    global.fetch = vi.fn().mockImplementation(
-      () => new Promise(() => {}) // Never resolves
-    );
+    vi.useFakeTimers();
+    global.fetch = mockFetchPending();
 
     render(<TodoList />, { wrapper: createAppWrapper() });
+
+    // LoadingState has 200ms delay before showing
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
 
     expect(screen.getByRole('status')).toBeInTheDocument();
   });
 
   it('shows empty state when no todos exist', async () => {
-    global.fetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve([]),
-    });
+    global.fetch = mockFetchSuccess([]);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
     await waitFor(() => {
-      expect(screen.getByText('No tasks yet. Add one above!')).toBeInTheDocument();
+      expect(screen.getByText('No tasks yet — add one above!')).toBeInTheDocument();
     });
   });
 
   it('displays todos in a list', async () => {
-    global.fetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mockTodos),
-    });
+    global.fetch = mockFetchSuccess(mockTodos);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -156,10 +162,7 @@ describe('TodoList', () => {
       },
     ];
 
-    global.fetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(todosWithMultipleIncomplete),
-    });
+    global.fetch = mockFetchSuccess(todosWithMultipleIncomplete);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -178,10 +181,7 @@ describe('TodoList', () => {
   });
 
   it('renders todos in separate sections', async () => {
-    global.fetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mockTodos),
-    });
+    global.fetch = mockFetchSuccess(mockTodos);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -199,18 +199,12 @@ describe('TodoList', () => {
   it('calls PATCH API when checkbox is clicked', async () => {
     const user = userEvent.setup();
 
-    global.fetch = vi.fn().mockImplementation((url: string, options?: RequestInit) => {
-      if (options?.method === 'PATCH') {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({ ...mockTodos[0], completed: true }),
-        });
-      }
-      return Promise.resolve({
+    global.fetch = mockFetchWithHandlers({
+      PATCH: () => Promise.resolve({
         ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
-    });
+        json: () => Promise.resolve({ ...mockTodos[0], completed: true }),
+      }),
+    }, mockTodos);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -219,15 +213,12 @@ describe('TodoList', () => {
       expect(screen.getByText('Older task')).toBeInTheDocument();
     });
 
-    // Click the checkbox for 'Older task' (incomplete -> complete)
-    const checkboxes = screen.getAllByRole('checkbox');
-    const olderTaskCheckbox = checkboxes.find(
-      (cb) => cb.getAttribute('aria-label')?.includes('Older task')
-    );
-    expect(olderTaskCheckbox).toBeDefined();
+    // Click the checkbox for 'Older task' using data-testid
+    // Click the checkbox for 'Older task' using data-testid
+    const olderTaskCheckbox = screen.getByTestId('task-checkbox-1');
 
     await act(async () => {
-      await user.click(olderTaskCheckbox!);
+      await user.click(olderTaskCheckbox);
     });
 
     // Verify PATCH was called with correct body
@@ -245,18 +236,9 @@ describe('TodoList', () => {
   it('shows error toast when toggle fails', async () => {
     const user = userEvent.setup();
 
-    global.fetch = vi.fn().mockImplementation((url: string, options?: RequestInit) => {
-      if (options?.method === 'PATCH') {
-        return Promise.resolve({
-          ok: false,
-          status: 500,
-        });
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
-    });
+    global.fetch = mockFetchWithHandlers({
+      PATCH: () => Promise.resolve({ ok: false, status: 500 }),
+    }, mockTodos);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -264,13 +246,10 @@ describe('TodoList', () => {
       expect(screen.getByText('Older task')).toBeInTheDocument();
     });
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    const olderTaskCheckbox = checkboxes.find(
-      (cb) => cb.getAttribute('aria-label')?.includes('Older task')
-    );
+    const olderTaskCheckbox = screen.getByTestId('task-checkbox-1');
 
     await act(async () => {
-      await user.click(olderTaskCheckbox!);
+      await user.click(olderTaskCheckbox);
     });
 
     // Error toast should appear with error message
@@ -282,15 +261,9 @@ describe('TodoList', () => {
   it('calls DELETE API when delete button is clicked', async () => {
     const user = userEvent.setup();
 
-    global.fetch = vi.fn().mockImplementation((url: string, options?: RequestInit) => {
-      if (options?.method === 'DELETE') {
-        return Promise.resolve({ ok: true });
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
-    });
+    global.fetch = mockFetchWithHandlers({
+      DELETE: () => Promise.resolve({ ok: true }),
+    }, mockTodos);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -298,14 +271,11 @@ describe('TodoList', () => {
       expect(screen.getByText('Older task')).toBeInTheDocument();
     });
 
-    // Click the delete button for 'Older task'
-    const deleteButtons = screen.getAllByRole('button', { name: /delete/i });
-    const olderTaskDeleteButton = deleteButtons.find(
-      (btn) => btn.getAttribute('aria-label')?.includes('Older task')
-    );
+    // Click the delete button for 'Older task' using data-testid
+    const olderTaskDeleteButton = screen.getByTestId('task-delete-1');
 
     await act(async () => {
-      await user.click(olderTaskDeleteButton!);
+      await user.click(olderTaskDeleteButton);
     });
 
     await waitFor(() => {
@@ -319,18 +289,9 @@ describe('TodoList', () => {
   it('shows error toast when delete fails', async () => {
     const user = userEvent.setup();
 
-    global.fetch = vi.fn().mockImplementation((url: string, options?: RequestInit) => {
-      if (options?.method === 'DELETE') {
-        return Promise.resolve({
-          ok: false,
-          status: 500,
-        });
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
-    });
+    global.fetch = mockFetchWithHandlers({
+      DELETE: () => Promise.resolve({ ok: false, status: 500 }),
+    }, mockTodos);
 
     render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -338,13 +299,10 @@ describe('TodoList', () => {
       expect(screen.getByText('Older task')).toBeInTheDocument();
     });
 
-    const deleteButtons = screen.getAllByRole('button', { name: /delete/i });
-    const olderTaskDeleteButton = deleteButtons.find(
-      (btn) => btn.getAttribute('aria-label')?.includes('Older task')
-    );
+    const olderTaskDeleteButton = screen.getByTestId('task-delete-1');
 
     await act(async () => {
-      await user.click(olderTaskDeleteButton!);
+      await user.click(olderTaskDeleteButton);
     });
 
     await waitFor(() => {
@@ -354,10 +312,7 @@ describe('TodoList', () => {
 
   describe('two-section layout', () => {
     it('shows incomplete tasks in To Do section', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
+      global.fetch = mockFetchSuccess(mockTodos);
 
       render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -369,10 +324,7 @@ describe('TodoList', () => {
     });
 
     it('shows completed tasks in Done section', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
+      global.fetch = mockFetchSuccess(mockTodos);
 
       render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -383,10 +335,7 @@ describe('TodoList', () => {
     });
 
     it('shows section headings with counts', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
+      global.fetch = mockFetchSuccess(mockTodos);
 
       render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -399,10 +348,7 @@ describe('TodoList', () => {
     it('shows empty message when To Do section is empty', async () => {
       const completedOnly = [mockTodos[2]]; // Only completed task
 
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve(completedOnly),
-      });
+      global.fetch = mockFetchSuccess(completedOnly);
 
       render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -414,10 +360,7 @@ describe('TodoList', () => {
     it('shows empty message when Done section is empty', async () => {
       const incompleteOnly = mockTodos.filter((t) => !t.completed);
 
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve(incompleteOnly),
-      });
+      global.fetch = mockFetchSuccess(incompleteOnly);
 
       render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -429,10 +372,7 @@ describe('TodoList', () => {
     it('Done section can be collapsed', async () => {
       const user = userEvent.setup();
 
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
+      global.fetch = mockFetchSuccess(mockTodos);
 
       render(<TodoList />, { wrapper: createAppWrapper() });
 
@@ -458,10 +398,7 @@ describe('TodoList', () => {
     it('Done section can be expanded after collapse', async () => {
       const user = userEvent.setup();
 
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        json: () => Promise.resolve(mockTodos),
-      });
+      global.fetch = mockFetchSuccess(mockTodos);
 
       render(<TodoList />, { wrapper: createAppWrapper() });
 

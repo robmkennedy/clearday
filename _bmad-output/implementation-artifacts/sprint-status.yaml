@@ -1,8 +1,9 @@
-# generated: 2026-03-05
+# generated: 2026-03-10
 # project: bmad-todo
 # project_key: NOKEY
 # tracking_system: file-system
 # story_location: _bmad-output/implementation-artifacts
+# current_sprint: 3
 
 # STATUS DEFINITIONS:
 # ==================
@@ -72,10 +73,10 @@ development_status:
   epic-4-retrospective: optional
 
   # Epic 5: UI States & Feedback
-  epic-5: backlog
-  5-1-implement-loadingstate-component: backlog
-  5-2-implement-errorstate-component: backlog
-  5-3-implement-emptystate-component: backlog
+  epic-5: in-progress
+  5-1-implement-loadingstate-component: ready-for-dev
+  5-2-implement-errorstate-component: ready-for-dev
+  5-3-implement-emptystate-component: ready-for-dev
   epic-5-retrospective: optional
 
   # Epic 6: Dark Mode & Theme Support

@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { useTodos, useToggleTodo, useDeleteTodo, useToast } from '../../hooks';
 import type { OptimisticTodo } from '../../hooks';
 import { TaskItem } from '../TaskItem';
+import { LoadingState } from '../LoadingState';
+import { ErrorState } from '../ErrorState';
+import { EmptyState } from '../EmptyState';
 import styles from './TodoList.module.css';
 
 /** Animation duration for delete in ms */
@@ -51,32 +54,15 @@ export function TodoList() {
   });
 
   if (isLoading) {
-    return (
-      <p className={styles.loadingMessage} role="status" aria-live="polite">
-        Loading todos...
-      </p>
-    );
+    return <LoadingState />;
   }
 
   if (isError) {
-    return (
-      <div className={styles.errorMessage} role="alert" aria-live="assertive">
-        <p>Error loading todos.</p>
-        <button
-          type="button"
-          onClick={() => refetch()}
-          className={styles.retryButton}
-        >
-          Try again
-        </button>
-      </div>
-    );
+    return <ErrorState message="Error loading todos" onRetry={() => refetch()} />;
   }
 
   if (!todos || todos.length === 0) {
-    return (
-      <p className={styles.emptyMessage}>No tasks yet. Add one above!</p>
-    );
+    return <EmptyState variant="empty" />;
   }
 
   // Cast to OptimisticTodo and split into sections

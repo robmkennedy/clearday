@@ -55,7 +55,7 @@ export function TaskItem({ todo, onToggle, onDelete, disabled = false, isDeletin
   ].filter(Boolean).join(' ');
 
   return (
-    <li className={classNames}>
+    <li className={classNames} data-testid={`task-item-${todo.id}`}>
       <input
         type="checkbox"
         className={styles.checkbox}
@@ -64,6 +64,7 @@ export function TaskItem({ todo, onToggle, onDelete, disabled = false, isDeletin
         onKeyDown={handleKeyDown}
         disabled={isDisabled}
         aria-label={`Mark "${todo.text}" as ${todo.completed ? 'incomplete' : 'complete'}`}
+        data-testid={`task-checkbox-${todo.id}`}
       />
       <span className={styles.text}>{todo.text}</span>
       {isPending && <span className={styles.pendingIndicator}>Saving...</span>}
@@ -74,6 +75,7 @@ export function TaskItem({ todo, onToggle, onDelete, disabled = false, isDeletin
           onClick={handleDelete}
           disabled={isDisabled}
           aria-label={`Delete "${todo.text}"`}
+          data-testid={`task-delete-${todo.id}`}
         >
           ×
         </button>
