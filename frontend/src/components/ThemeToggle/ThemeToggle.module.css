@@ -1,0 +1,46 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Minimum 44x44px touch target for accessibility */
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: var(--spacing-sm);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.toggle:hover {
+  background-color: var(--color-hover);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.toggle:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  /* Prevent emoji color from being affected by text color */
+  user-select: none;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .toggle {
+    transition: none;
+  }
+
+  .toggle:active {
+    transform: none;
+  }
+}
+

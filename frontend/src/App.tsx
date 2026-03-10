@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { TaskInput } from './components/TaskInput';
 import { TodoList } from './components/TodoList';
 import { ToastContainer } from './components/Toast';
+import { ThemeToggle } from './components/ThemeToggle';
 import { useAddTodo, useToast, ToastProvider } from './hooks';
 import './styles/global.css';
 
@@ -52,8 +53,9 @@ export function App() {
       <ToastProvider>
         <div className="app">
           <header>
-            <div className="container">
+            <div className="container header-content">
               <h1>BMad Todo</h1>
+              <ThemeToggle />
             </div>
           </header>
           <main>

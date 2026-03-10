@@ -33,15 +33,15 @@
   border: none;
   cursor: pointer;
   padding: var(--spacing-xs);
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-sm);
 }
 
 .collapseButton:hover {
-  background-color: var(--color-hover, rgba(0, 0, 0, 0.05));
+  background-color: var(--color-hover);
 }
 
 .collapseButton:focus {
-  outline: 2px solid var(--color-primary, #3b82f6);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
@@ -62,9 +62,9 @@
 }
 
 .sectionToggle:focus {
-  outline: 2px solid var(--color-primary, #3b82f6);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-sm);
 }
 
 .collapseIcon {
@@ -95,7 +95,7 @@
 
 .errorMessage {
   margin-top: var(--spacing-lg);
-  color: var(--color-error, #dc2626);
+  color: var(--color-error);
 }
 
 .errorMessage p {
@@ -104,10 +104,10 @@
 
 .retryButton {
   padding: var(--spacing-xs) var(--spacing-md);
-  background-color: var(--color-primary, #3b82f6);
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
   border: none;
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: inherit;
 }
@@ -117,7 +117,7 @@
 }
 
 .retryButton:focus {
-  outline: 2px solid var(--color-primary, #3b82f6);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 

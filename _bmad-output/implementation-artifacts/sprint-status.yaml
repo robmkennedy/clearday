@@ -3,7 +3,7 @@
 # project_key: NOKEY
 # tracking_system: file-system
 # story_location: _bmad-output/implementation-artifacts
-# current_sprint: 3
+# current_sprint: 4
 
 # STATUS DEFINITIONS:
 # ==================
@@ -73,18 +73,18 @@ development_status:
   epic-4-retrospective: optional
 
   # Epic 5: UI States & Feedback
-  epic-5: in-progress
-  5-1-implement-loadingstate-component: ready-for-dev
-  5-2-implement-errorstate-component: ready-for-dev
-  5-3-implement-emptystate-component: ready-for-dev
+  epic-5: done
+  5-1-implement-loadingstate-component: done
+  5-2-implement-errorstate-component: done
+  5-3-implement-emptystate-component: done
   epic-5-retrospective: optional
 
   # Epic 6: Dark Mode & Theme Support
-  epic-6: backlog
-  6-1-implement-usetheme-hook: backlog
-  6-2-implement-themetoggle-component: backlog
-  6-3-implement-dark-mode-css-variables: backlog
-  6-4-implement-theme-flash-prevention: backlog
+  epic-6: done
+  6-1-implement-usetheme-hook: done
+  6-2-implement-themetoggle-component: done
+  6-3-implement-dark-mode-css-variables: done
+  6-4-implement-theme-flash-prevention: done
   epic-6-retrospective: optional
 
   # Epic 7: Production Readiness

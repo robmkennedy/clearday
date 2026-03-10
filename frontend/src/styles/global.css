@@ -21,6 +21,12 @@
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  /* Help browser with form controls and scrollbars in each theme */
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 body {
@@ -31,6 +37,8 @@ body {
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Smooth theme transitions */
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 /* Focus Styles */
@@ -154,8 +162,17 @@ h3 {
 
 .app > header {
   padding: var(--spacing-lg) 0;
-  text-align: center;
   border-bottom: 1px solid var(--color-border);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-content h1 {
+  margin: 0;
 }
 
 .app > main {

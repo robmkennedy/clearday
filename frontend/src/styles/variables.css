@@ -33,6 +33,11 @@
   --color-border: #e5e7eb;
   --color-border-focus: #2563eb;
 
+  /* Interactive States */
+  --color-hover: rgba(0, 0, 0, 0.02);
+  --color-focus: rgba(59, 130, 246, 0.05);
+  --color-error-bg: rgba(220, 38, 38, 0.1);
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -115,6 +120,11 @@
 
   --color-border: #374151;
   --color-border-focus: #3b82f6;
+
+  /* Interactive States - Dark */
+  --color-hover: rgba(255, 255, 255, 0.05);
+  --color-focus: rgba(59, 130, 246, 0.15);
+  --color-error-bg: rgba(239, 68, 68, 0.15);
 
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
