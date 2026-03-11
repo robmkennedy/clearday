@@ -1,4 +1,4 @@
-# Story 4-4: Implement Theme Flash Prevention
+# Story 6-4: Implement Theme Flash Prevention
 
 ## Story
 
@@ -114,6 +114,7 @@ None
 
 **Current Status:** Done  
 **Last Updated:** 2026-03-10
+
 
 
 

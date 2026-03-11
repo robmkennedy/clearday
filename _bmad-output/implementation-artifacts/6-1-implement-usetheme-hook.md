@@ -1,4 +1,4 @@
-# Story 4-1: Implement useTheme Hook
+# Story 6-1: Implement useTheme Hook
 
 ## Story
 
@@ -152,4 +152,3 @@ export function useTheme(): {
 
 **Current Status:** Done  
 **Last Updated:** 2026-03-10
-

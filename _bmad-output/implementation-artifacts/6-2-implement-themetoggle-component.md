@@ -1,4 +1,4 @@
-# Story 4-2: Implement ThemeToggle Component
+# Story 6-2: Implement ThemeToggle Component
 
 ## Story
 
@@ -137,6 +137,7 @@ export function ThemeToggle() {
 
 **Current Status:** Done  
 **Last Updated:** 2026-03-10
+
 
 
 

@@ -1,4 +1,4 @@
-# Story 4-3: Implement Dark Mode CSS Variables
+# Story 6-3: Implement Dark Mode CSS Variables
 
 ## Story
 
@@ -125,4 +125,5 @@ None
 
 **Current Status:** Done  
 **Last Updated:** 2026-03-10
+
 
