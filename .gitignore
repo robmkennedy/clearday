@@ -5,6 +5,9 @@ node_modules/
 dist/
 build/
 *.tsbuildinfo
+shared/types/**/*.js
+shared/types/**/*.d.ts
+shared/types/**/*.map
 
 # Vite
 .vite/

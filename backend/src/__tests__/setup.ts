@@ -12,6 +12,9 @@ import { db, schema } from '../db/index.js';
 // Set test environment
 process.env.NODE_ENV = 'test';
 
+// Silence Pino logs during tests
+process.env.LOG_LEVEL = 'silent';
+
 // Global test timeout
 // vi.setConfig({ testTimeout: 10000 });
 

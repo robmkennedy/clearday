@@ -93,10 +93,10 @@ development_status:
   epic-6-retrospective: optional
 
   # Epic 7: Production Readiness
-  epic-7: in-progress
-  7-1-implement-health-check-security-middleware: ready-for-dev
-  7-2-implement-structured-logging: ready-for-dev
-  7-3-configure-production-build-static-serving: ready-for-dev
-  7-4-set-up-testing-infrastructure: ready-for-dev
+  epic-7: done
+  7-1-implement-health-check-security-middleware: done
+  7-2-implement-structured-logging: done
+  7-3-configure-production-build-static-serving: done
+  7-4-set-up-testing-infrastructure: done
   epic-7-retrospective: optional
 

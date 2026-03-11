@@ -37,23 +37,23 @@ Coverage mapping and coverage gates are out of scope here. Use `trace` for cover
 
 ### Key Strengths
 
-✅ **Excellent Network-First Pattern**: E2E tests consistently use `waitForResponse` before navigation—zero race conditions detected  
-✅ **Strong API Test Coverage**: Backend tests cover all CRUD operations with validation, error handling, and edge cases (32 tests for todos.test.ts)  
-✅ **Well-Structured Fixtures**: Custom Playwright fixtures (`base.ts`) with auto-cleanup, network helpers, and typed interfaces follow best practices  
-✅ **Good BDD Structure**: E2E tests use Given-When-Then comments and clear test naming  
-✅ **Accessibility Testing**: Dedicated axe-core accessibility tests for WCAG 2.0 AA compliance
-✅ **Data Factories**: Backend tests now use `todo-factory.ts` for unique, maintainable test data ⬆️ *NEW*
-✅ **Priority Tags**: All backend API tests now have `@p0`/`@p1`/`@p2` priority markers ⬆️ *NEW*
+- ✅ **Excellent Network-First Pattern**: E2E tests consistently use `waitForResponse` before navigation—zero race conditions detected
+- ✅ **Strong API Test Coverage**: Backend tests cover all CRUD operations with validation, error handling, and edge cases (32 tests for todos.test.ts)
+- ✅ **Well-Structured Fixtures**: Custom Playwright fixtures (`base.ts`) with auto-cleanup, network helpers, and typed interfaces follow best practices
+- ✅ **Good BDD Structure**: E2E tests use Given-When-Then comments and clear test naming
+- ✅ **Accessibility Testing**: Dedicated axe-core accessibility tests for WCAG 2.0 AA compliance
+- ✅ **Data Factories**: Backend tests now use `todo-factory.ts` for unique, maintainable test data ⬆️ *NEW*
+- ✅ **Priority Tags**: All backend API tests now have `@p0`/`@p1`/`@p2` priority markers ⬆️ *NEW*
 
 ### Key Weaknesses (Resolved)
 
-~~❌ **React Testing Library `act()` Warnings**~~ ✅ Fixed 2026-03-06
-~~❌ **Missing Priority Markers in Some Tests**~~ ✅ Added to backend tests 2026-03-06
-~~❌ **Data Factory Hardcoding**~~ ✅ Created `todo-factory.ts` 2026-03-06
+- ~~❌ **React Testing Library `act()` Warnings**~~ ✅ Fixed 2026-03-06
+- ~~❌ **Missing Priority Markers in Some Tests**~~ ✅ Added to backend tests 2026-03-06
+- ~~❌ **Data Factory Hardcoding**~~ ✅ Created `todo-factory.ts` 2026-03-06
 
 ### Remaining Items
 
-⚠️ **Missing Test IDs**: Formal test ID scheme documented in `test-id-implementation-plan.md` - ready for Sprint 3 adoption
+- ⚠️ **Missing Test IDs**: Formal test ID scheme documented in `test-id-implementation-plan.md` - ready for Sprint 3 adoption
 
 ### Summary
 

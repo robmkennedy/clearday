@@ -37,30 +37,27 @@ Coverage mapping and coverage gates are out of scope here. Use `trace` for cover
 
 ### Key Strengths
 
-✅ **Comprehensive Component Testing**: Sprint 3 components (LoadingState, ErrorState, EmptyState) have 35 dedicated unit tests covering all acceptance criteria  
-✅ **Accessibility-First Design**: All three components include explicit ARIA tests (role, aria-live, aria-label)  
-✅ **Timer Testing Excellence**: LoadingState tests properly use `vi.useFakeTimers()` with cleanup—no flakiness risk from real timers  
-✅ **Edge Case Coverage**: Delay threshold tests (0ms, 199ms, 200ms, custom) demonstrate boundary testing maturity  
-✅ **Integration Verified**: TodoList tests (19 tests) confirm proper integration of all three state components  
-✅ **Data Factories Maintained**: Backend tests continue using `todo-factory.ts` from Sprint 2  
-✅ **Priority Tags Preserved**: All backend API tests retain `@p0`/`@p1`/`@p2` markers  
-✅ **E2E Coverage Added**: New `ui-states.spec.ts` covers loading, error, empty states with network mocking  
-✅ **Priority Tags Added**: All Sprint 3 component tests now have `@p0`/`@p1`/`@p2` markers  
-✅ **prefers-reduced-motion Tested**: E2E test verifies CSS animation respects user preference  
+- ✅ **Comprehensive Component Testing**: Sprint 3 components (LoadingState, ErrorState, EmptyState) have 35 dedicated unit tests covering all acceptance criteria
+- ✅ **Accessibility-First Design**: All three components include explicit ARIA tests (role, aria-live, aria-label)
+- ✅ **Timer Testing Excellence**: LoadingState tests properly use `vi.useFakeTimers()` with cleanup—no flakiness risk from real timers
+- ✅ **Edge Case Coverage**: Delay threshold tests (0ms, 199ms, 200ms, custom) demonstrate boundary testing maturity
+- ✅ **Integration Verified**: TodoList tests (19 tests) confirm proper integration of all three state components
+- ✅ **Data Factories Maintained**: Backend tests continue using `todo-factory.ts` from Sprint 2
+- ✅ **Priority Tags Preserved**: All backend API tests retain `@p0`/`@p1`/`@p2` markers
+- ✅ **E2E Coverage Added**: New `ui-states.spec.ts` covers loading, error, empty states with network mocking
+- ✅ **Priority Tags Added**: All Sprint 3 component tests now have `@p0`/`@p1`/`@p2` markers
+- ✅ **prefers-reduced-motion Tested**: E2E test verifies CSS animation respects user preference
 
 ### ~~Key Weaknesses~~ Fixed Issues
 
-~~⚠️ **No E2E Tests for UI States**: Missing Playwright tests for loading/error/empty states with network mocking~~  
-✅ **FIXED**: Created `e2e/ui-states.spec.ts` with 14 E2E tests covering all UI states
-
-~~⚠️ **Missing Test IDs**: Sprint 3 tests don't implement formal test ID scheme (deferred from Sprint 2)~~  
-✅ **FIXED**: Added story IDs (S3-001, S3-002, S3-003) to test describe blocks
-
-~~⚠️ **`prefers-reduced-motion` Untested at Runtime**: CSS exists but no test verifies JavaScript respects the media query~~  
-✅ **FIXED**: Added E2E test using `page.emulateMedia({ reducedMotion: 'reduce' })`
-
-~~⚠️ **Missing Priority Tags**: Component tests lack `@p0`/`@p1`/`@p2` markers~~  
-✅ **FIXED**: Added priority tags to all 35 Sprint 3 component tests  
+- ~~⚠️ **No E2E Tests for UI States**: Missing Playwright tests for loading/error/empty states with network mocking~~
+  ✅ **FIXED**: Created `e2e/ui-states.spec.ts` with 14 E2E tests covering all UI states
+- ~~⚠️ **Missing Test IDs**: Sprint 3 tests don't implement formal test ID scheme (deferred from Sprint 2)~~
+  ✅ **FIXED**: Added story IDs (S3-001, S3-002, S3-003) to test describe blocks
+- ~~⚠️ **`prefers-reduced-motion` Untested at Runtime**: CSS exists but no test verifies JavaScript respects the media query~~
+  ✅ **FIXED**: Added E2E test using `page.emulateMedia({ reducedMotion: 'reduce' })`
+- ~~⚠️ **Missing Priority Tags**: Component tests lack `@p0`/`@p1`/`@p2` markers~~
+  ✅ **FIXED**: Added priority tags to all 35 Sprint 3 component tests  
 
 ### Summary
 

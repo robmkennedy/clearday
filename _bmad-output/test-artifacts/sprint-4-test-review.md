@@ -29,19 +29,19 @@ inputDocuments:
 
 ### Key Strengths
 
-✅ Comprehensive test coverage across unit, component, and E2E levels
-✅ Excellent use of shared test utilities (`theme-test-utils.ts`) reducing code duplication
-✅ Strong accessibility testing with axe-core in dark mode
-✅ Proper isolation with cleanup in `beforeEach`/`afterEach` hooks
-✅ Good use of data-testid selectors for stable test identification
-✅ Explicit assertions throughout — no hidden assertions in helpers
-✅ Test IDs linked to acceptance criteria (e.g., `S4-001-AC1`)
-✅ Hard wait documented with named constant (`CSS_TRANSITION_SETTLE_MS`)
+- ✅ Comprehensive test coverage across unit, component, and E2E levels
+- ✅ Excellent use of shared test utilities (`theme-test-utils.ts`) reducing code duplication
+- ✅ Strong accessibility testing with axe-core in dark mode
+- ✅ Proper isolation with cleanup in `beforeEach`/`afterEach` hooks
+- ✅ Good use of data-testid selectors for stable test identification
+- ✅ Explicit assertions throughout — no hidden assertions in helpers
+- ✅ Test IDs linked to acceptance criteria (e.g., `S4-001-AC1`)
+- ✅ Hard wait documented with named constant (`CSS_TRANSITION_SETTLE_MS`)
 
 ### Key Weaknesses
 
-~❌ One `waitForTimeout(200)` hard wait in E2E test~ → **FIXED**: Now uses named constant with documentation
-~❌ No test IDs or priority markers in unit tests~ → **FIXED**: Added test IDs for P0 acceptance criteria
+- ~❌ One `waitForTimeout(200)` hard wait in E2E test~ → **FIXED**: Now uses named constant with documentation
+- ~❌ No test IDs or priority markers in unit tests~ → **FIXED**: Added test IDs for P0 acceptance criteria
 
 ### Summary
 

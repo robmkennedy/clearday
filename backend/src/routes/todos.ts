@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { db, schema } from '../db/index.js';
 import { z, ZodError } from 'zod';
 import { desc, eq } from 'drizzle-orm';
+import { logger } from '../middleware/logger.js';
 
 /**
  * Validation schema for creating a todo
@@ -61,7 +62,7 @@ router.get('/', async (_req, res) => {
 
     res.json(todos);
   } catch (error) {
-    console.error('Error fetching todos:', error);
+    logger.error({ error }, 'Error fetching todos');
     res.status(500).json({
       error: {
         code: 'INTERNAL_ERROR',
@@ -110,7 +111,7 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    console.error('Error creating todo:', error);
+    logger.error({ error }, 'Error creating todo');
     res.status(500).json({
       error: {
         code: 'INTERNAL_ERROR',
@@ -189,7 +190,7 @@ router.patch('/:id', async (req, res) => {
       return;
     }
 
-    console.error('Error updating todo:', error);
+    logger.error({ error }, 'Error updating todo');
     res.status(500).json({
       error: {
         code: 'INTERNAL_ERROR',
@@ -240,7 +241,7 @@ router.delete('/:id', async (req, res) => {
       return;
     }
 
-    console.error('Error deleting todo:', error);
+    logger.error({ error }, 'Error deleting todo');
     res.status(500).json({
       error: {
         code: 'INTERNAL_ERROR',

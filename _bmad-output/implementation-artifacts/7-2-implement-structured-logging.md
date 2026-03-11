@@ -1,6 +1,6 @@
 # Story 7.2: Implement Structured Logging
 
-Status: ready-for-dev
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -19,44 +19,44 @@ Status: ready-for-dev
 
 ## Acceptance Criteria
 
-- [ ] AC1: All application logging uses Pino structured logger (no `console.log` in production code)
-- [ ] AC2: HTTP requests are logged with method, path, status code, and response duration
-- [ ] AC3: Development environment uses `pino-pretty` for human-readable log output
-- [ ] AC4: Production environment outputs JSON-formatted logs (no pino-pretty)
-- [ ] AC5: Log level is configurable via `LOG_LEVEL` environment variable (default: `info`)
-- [ ] AC6: All existing tests (208+) continue to pass — zero regressions
-- [ ] AC7: New tests verify request logging middleware captures method, path, status, and duration
+- [x] AC1: All application logging uses Pino structured logger (no `console.log` in production code)
+- [x] AC2: HTTP requests are logged with method, path, status code, and response duration
+- [x] AC3: Development environment uses `pino-pretty` for human-readable log output
+- [x] AC4: Production environment outputs JSON-formatted logs (no pino-pretty)
+- [x] AC5: Log level is configurable via `LOG_LEVEL` environment variable (default: `info`)
+- [x] AC6: All existing tests (208+) continue to pass — zero regressions
+- [x] AC7: New tests verify request logging middleware captures method, path, status, and duration
 
 ---
 
 ## Tasks / Subtasks
 
 ### Task 1: Install dependencies (AC: 1, 3)
-- [ ] 1.1 Install `pino` as a production dependency in `backend/package.json`
-- [ ] 1.2 Install `pino-pretty` as a dev dependency in `backend/package.json`
-- [ ] 1.3 Install `pino-http` as a production dependency for Express request logging
+- [x] 1.1 Install `pino` as a production dependency in `backend/package.json`
+- [x] 1.2 Install `pino-pretty` as a dev dependency in `backend/package.json`
+- [x] 1.3 Install `pino-http` as a production dependency for Express request logging
 
 ### Task 2: Create logger module (AC: 1, 3, 4, 5)
-- [ ] 2.1 Create `backend/src/middleware/logger.ts`
-- [ ] 2.2 Export a configured Pino instance with log level from `process.env.LOG_LEVEL || 'info'`
-- [ ] 2.3 In development (`NODE_ENV !== 'production'`): use `pino-pretty` transport
-- [ ] 2.4 In production: use default JSON output (no transport)
+- [x] 2.1 Create `backend/src/middleware/logger.ts`
+- [x] 2.2 Export a configured Pino instance with log level from `process.env.LOG_LEVEL || 'info'`
+- [x] 2.3 In development (`NODE_ENV !== 'production'`): use `pino-pretty` transport
+- [x] 2.4 In production: use default JSON output (no transport)
 
 ### Task 3: Add request logging middleware (AC: 2)
-- [ ] 3.1 Create Express middleware using `pino-http` (or custom middleware) that logs: method, path, status, duration (ms)
-- [ ] 3.2 Import and apply middleware in `backend/src/app.ts` — place after security middleware (helmet, cors), before routes
-- [ ] 3.3 Ensure request logs include response time calculation (start → finish)
+- [x] 3.1 Create Express middleware using `pino-http` (or custom middleware) that logs: method, path, status, duration (ms)
+- [x] 3.2 Import and apply middleware in `backend/src/app.ts` — place after security middleware (helmet, cors), before routes
+- [x] 3.3 Ensure request logs include response time calculation (start → finish)
 
 ### Task 4: Replace console.log with logger (AC: 1)
-- [ ] 4.1 Replace `console.log` in `backend/src/index.ts` startup message with `logger.info()`
-- [ ] 4.2 Search for any other `console.log` / `console.error` in backend `src/` and replace with logger calls
-- [ ] 4.3 Do NOT change `console.log` in test setup files (`__tests__/setup.ts`) — those are test diagnostics
+- [x] 4.1 Replace `console.log` in `backend/src/index.ts` startup message with `logger.info()`
+- [x] 4.2 Search for any other `console.log` / `console.error` in backend `src/` and replace with logger calls
+- [x] 4.3 Do NOT change `console.log` in test setup files (`__tests__/setup.ts`) — those are test diagnostics
 
 ### Task 5: Update tests (AC: 6, 7)
-- [ ] 5.1 Add test: verify request logging middleware is applied (make request, check no errors)
-- [ ] 5.2 Add test: verify logger module exports configured Pino instance
-- [ ] 5.3 Ensure Pino logs don't pollute test output — consider setting `LOG_LEVEL=silent` in test setup or using `pino({ level: 'silent' })` in test env
-- [ ] 5.4 Run full test suite — all 208+ tests must pass
+- [x] 5.1 Add test: verify request logging middleware is applied (make request, check no errors)
+- [x] 5.2 Add test: verify logger module exports configured Pino instance
+- [x] 5.3 Ensure Pino logs don't pollute test output — consider setting `LOG_LEVEL=silent` in test setup or using `pino({ level: 'silent' })` in test env
+- [x] 5.4 Run full test suite — all 208+ tests must pass
 
 ---
 
@@ -183,11 +183,33 @@ npm install --workspace=backend --save-dev pino-pretty @types/pino-http
 
 ### Agent Model Used
 
-{{agent_model_name_version}}
+Claude (Anthropic) — via GitHub Copilot
 
 ### Debug Log References
 
+- Set `LOG_LEVEL=silent` in test setup to prevent Pino output from polluting test results.
+- Only one `console.log` existed in production code (`index.ts`); test setup `console.log` preserved per story instructions.
+
 ### Completion Notes List
 
+- **Task 1**: Installed `pino@^9`, `pino-http` as production deps; `pino-pretty`, `@types/pino-http` as dev deps in backend workspace.
+- **Task 2**: Created `backend/src/middleware/logger.ts` — Pino logger with `LOG_LEVEL` env var support, pino-pretty transport in non-production envs.
+- **Task 3**: Added `pinoHttp({ logger })` middleware in `app.ts` after CORS, before body parsing. Logs method, url, status, responseTime automatically.
+- **Task 4**: Replaced `console.log` in `backend/src/index.ts` with `logger.info()`. No other `console.log` in production code. Test setup `console.log` left intact.
+- **Task 5**: Created `backend/src/__tests__/middleware/logger.test.ts` with 6 tests: logger export verification, log level config, request logging for health/todos/POST/multi-method. Added `LOG_LEVEL=silent` to test setup. All 224 tests pass (56 backend + 168 frontend).
+
+### Change Log
+
+- 2026-03-11: Story 7.2 implemented — Pino structured logging with pino-http request middleware, pino-pretty dev transport, LOG_LEVEL env config, 6 new logger tests. 224 total tests passing.
+- 2026-03-11: Code review fixes — replaced 4× `console.error` in `todos.ts` with `logger.error()` (H1), changed pino-pretty transport to `development`-only (M2), updated File List (H2).
+
 ### File List
+
+- `backend/package.json` — added pino, pino-pretty (pino-http removed during 7.3)
+- `backend/src/middleware/logger.ts` — NEW: Pino logger module with env-based config
+- `backend/src/app.ts` — added custom request logging middleware
+- `backend/src/index.ts` — replaced console.log with logger.info
+- `backend/src/routes/todos.ts` — replaced 4× console.error with logger.error
+- `backend/src/__tests__/setup.ts` — added LOG_LEVEL=silent for test environment
+- `backend/src/__tests__/middleware/logger.test.ts` — NEW: 6 logger/request-logging tests
 
