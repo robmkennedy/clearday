@@ -153,6 +153,24 @@ h3 {
   border: 0;
 }
 
+/* A11Y-04: Skip link for keyboard navigation (WCAG 2.4.1) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  z-index: 100;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--spacing-sm);
+}
+
 /* App Layout */
 .app {
   min-height: 100vh;

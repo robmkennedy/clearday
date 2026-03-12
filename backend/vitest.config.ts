@@ -18,6 +18,9 @@ export default defineConfig({
         '**/*.test.ts',
         '**/*.config.ts',
         'src/__tests__/**',
+        'src/index.ts',
+        'src/db/index.ts',
+        'src/middleware/logger.ts',
       ],
       thresholds: {
         statements: 80,

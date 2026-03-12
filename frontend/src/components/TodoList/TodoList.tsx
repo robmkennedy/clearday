@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import { useTodos, useToggleTodo, useDeleteTodo, useToast } from '../../hooks';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { useTodos, useToggleTodo, useDeleteTodo, useToast, useAnnouncer } from '../../hooks';
 import type { OptimisticTodo } from '../../hooks';
 import { TaskItem } from '../TaskItem';
 import { LoadingState } from '../LoadingState';
@@ -30,8 +30,10 @@ export function TodoList() {
   const [isDoneCollapsed, setIsDoneCollapsed] = useState(false);
   const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set());
   const deleteTimersRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
+  const listContainerRef = useRef<HTMLDivElement>(null);
   const { data: todos, isLoading, isError, refetch } = useTodos();
   const { addToast } = useToast();
+  const { message: announcement, announce } = useAnnouncer();
 
   // Cleanup timers on unmount
   useEffect(() => {
@@ -52,6 +54,27 @@ export function TodoList() {
       addToast(error.message || 'Failed to delete task', 'error');
     },
   });
+
+  /**
+   * A11Y-05: Move focus to next sibling task checkbox, previous sibling,
+   * or the task input if no tasks remain after deletion.
+   */
+  const moveFocusAfterDelete = useCallback((deletedId: string) => {
+    const container = listContainerRef.current;
+    if (!container) return;
+
+    // Collect all visible checkboxes except the one being deleted
+    const checkboxes = Array.from(
+      container.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')
+    ).filter((cb) => !cb.closest(`[data-testid="task-item-${deletedId}"]`));
+
+    if (checkboxes.length > 0) {
+      checkboxes[0].focus();
+    } else {
+      // No tasks left — focus the task input
+      document.getElementById('task-input')?.focus();
+    }
+  }, []);
 
   if (isLoading) {
     return <LoadingState />;
@@ -74,10 +97,19 @@ export function TodoList() {
     const todo = typedTodos.find((t) => t.id === id);
     if (todo) {
       toggleMutation.mutate({ id, completed: !todo.completed });
+      // A11Y-03: Announce toggle for screen readers
+      const action = todo.completed ? 'marked incomplete' : 'completed';
+      announce(`Task ${action}: ${todo.text}`);
     }
   };
 
   const handleDelete = (id: string) => {
+    // A11Y-03: Announce deletion for screen readers
+    const todo = typedTodos.find((t) => t.id === id);
+    if (todo) {
+      announce(`Task deleted: ${todo.text}`);
+    }
+
     // Start delete animation
     setDeletingIds((prev) => new Set(prev).add(id));
 
@@ -90,6 +122,8 @@ export function TodoList() {
         next.delete(id);
         return next;
       });
+      // A11Y-05: Move focus after item is removed
+      moveFocusAfterDelete(id);
     }, DELETE_ANIMATION_MS);
 
     deleteTimersRef.current.set(id, timer);
@@ -100,7 +134,12 @@ export function TodoList() {
   };
 
   return (
-    <div className={styles.todoSections}>
+    <div className={styles.todoSections} ref={listContainerRef}>
+      {/* A11Y-03: Screen reader announcements for CRUD actions */}
+      <div aria-live="polite" aria-atomic="true" className="visually-hidden">
+        {announcement}
+      </div>
+
       {/* To Do Section */}
       <section className={styles.section} aria-labelledby="todo-heading">
         <h2 id="todo-heading" className={styles.sectionHeading}>

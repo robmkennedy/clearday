@@ -7,3 +7,4 @@ export { useToast, ToastProvider } from './useToast';
 export type { Toast, ToastType } from './useToast';
 export { useTheme } from './useTheme';
 export type { Theme, UseThemeReturn } from './useTheme';
+export { useAnnouncer } from './useAnnouncer';

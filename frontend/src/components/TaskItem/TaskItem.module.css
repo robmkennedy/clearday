@@ -59,6 +59,9 @@
 .checkbox {
   width: 1.25rem;
   height: 1.25rem;
+  /* A11Y-01: Ensure 44×44px touch target (WCAG 2.5.8) */
+  min-width: var(--touch-target-min, 44px);
+  min-height: var(--touch-target-min, 44px);
   cursor: pointer;
   accent-color: var(--color-primary);
   flex-shrink: 0;
@@ -93,6 +96,12 @@
 }
 
 .deleteButton {
+  /* A11Y-02: Ensure 44×44px touch target (WCAG 2.5.8) */
+  min-width: var(--touch-target-min, 44px);
+  min-height: var(--touch-target-min, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--spacing-xs) var(--spacing-sm);
   background: none;
   border: none;

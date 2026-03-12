@@ -20,8 +20,11 @@ shared/types/**/*.map
 # Database
 *.db
 *.db-journal
+*.db-shm
+*.db-wal
 *.sqlite
 *.sqlite3
+data/
 
 # IDE and editors
 .idea/

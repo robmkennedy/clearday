@@ -26,6 +26,10 @@ test.describe('Accessibility', () => {
 
     await expect(page.getByText('Test task for accessibility')).toBeVisible();
 
+    // Wait for slideIn animation (300ms) to complete before measuring contrast.
+    // Without this, axe-core may catch intermediate opacity values during animation.
+    await page.waitForTimeout(400);
+
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa'])
       .analyze();
