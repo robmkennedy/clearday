@@ -5,7 +5,16 @@
  * in parallel test runs and reduce magic strings.
  */
 
-import type { Todo } from '@shared/types';
+/**
+ * Local type matching shared/types
+ * Defined locally to avoid rootDir constraint (TS6059)
+ */
+interface Todo {
+  id: string;
+  text: string;
+  completed: boolean;
+  createdAt: string;
+}
 
 // Counter for unique data generation
 let todoCounter = 0;

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import request from 'supertest';
-import { app, createApp } from '../app.js';
+import { app } from '../app.js';
 
 /**
  * Health endpoint tests

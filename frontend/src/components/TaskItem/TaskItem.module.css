@@ -59,9 +59,6 @@
 .checkbox {
   width: 1.25rem;
   height: 1.25rem;
-  /* A11Y-01: Ensure 44×44px touch target (WCAG 2.5.8) */
-  min-width: var(--touch-target-min, 44px);
-  min-height: var(--touch-target-min, 44px);
   cursor: pointer;
   accent-color: var(--color-primary);
   flex-shrink: 0;
@@ -96,9 +93,6 @@
 }
 
 .deleteButton {
-  /* A11Y-02: Ensure 44×44px touch target (WCAG 2.5.8) */
-  min-width: var(--touch-target-min, 44px);
-  min-height: var(--touch-target-min, 44px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,6 +129,19 @@
 .deleteButton:disabled {
   cursor: not-allowed;
   opacity: 0.3;
+}
+
+/* A11Y-01/02: Enlarge touch targets on mobile/touch devices (WCAG 2.5.8) */
+@media (max-width: 768px), (pointer: coarse) {
+  .checkbox {
+    min-width: var(--touch-target-min, 44px);
+    min-height: var(--touch-target-min, 44px);
+  }
+
+  .deleteButton {
+    min-width: var(--touch-target-min, 44px);
+    min-height: var(--touch-target-min, 44px);
+  }
 }
 
 /* Respect user's motion preferences */
