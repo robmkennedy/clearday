@@ -12,6 +12,7 @@
     "dev": "concurrently \"npm run dev -w backend\" \"npm run dev -w frontend\"",
     "build": "npm run build -w shared && npm run build -w backend && npm run build -w frontend",
     "start": "npm run start -w backend",
+    "stop": "kill-port 3000 5173 8080 8081; docker compose down 2>/dev/null; true",
     "test": "npm run test:shared && npm run test:backend && npm run test:frontend",
     "test:frontend": "npm run test -w frontend",
     "test:backend": "npm run test -w backend",

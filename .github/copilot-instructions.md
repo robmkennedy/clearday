@@ -3,7 +3,7 @@
 
 ## Project Configuration
 
-- **Project**: bmad-todo
+- **Project**: clearday
 - **User**: Rob
 - **Communication Language**: English
 - **Document Output Language**: English
