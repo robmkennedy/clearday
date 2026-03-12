@@ -1,0 +1,251 @@
+# =============================================================================
+# Docker Compose — Clearday Todo Application
+# Orchestrates frontend (nginx) + backend (Express/SQLite) containers
+# =============================================================================
+#
+# Environments (switch via --env-file):
+#   docker compose --env-file .env.development up   # dev  (auto-loads override)
+#   docker compose --env-file .env.test up           # test (loads test overlay)
+#   docker compose --env-file .env.production up     # prod (base only)
+#
+# Quick shortcuts (defined in package.json):
+#   npm run docker:dev                               # dev mode
+#   npm run docker:test                              # run tests in container
+#   npm run docker:prod                              # production mode
+#
+# Other commands:
+#   docker compose up --build -d                     # build + detach
+#   docker compose logs -f backend                   # tail backend logs
+#   docker compose ps                                # check health status
+#   docker compose down                              # stop containers
+#   docker compose down -v                           # stop + DELETE data volume
+#
+# Environment:
+#   Copy the appropriate .env.<environment> to .env, or use --env-file flag.
+#   All variables have safe defaults for local development.
+#
+
+name: clearday
+
+# ---------------------------------------------------------------------------
+# Networks — isolate frontend ↔ backend traffic from external access
+# ---------------------------------------------------------------------------
+networks:
+  # Public-facing tier: only frontend (nginx) is exposed to the host
+  frontend-net:
+    driver: bridge
+  # Internal tier: backend is reachable only from frontend-net containers
+  backend-net:
+    driver: bridge
+    internal: true
+
+# ---------------------------------------------------------------------------
+# Volumes — persist SQLite data across container restarts
+# ---------------------------------------------------------------------------
+volumes:
+  todo-data:
+    driver: local
+    labels:
+      com.clearday.description: "SQLite database storage for Clearday todos"
+
+# ---------------------------------------------------------------------------
+# Services
+# ---------------------------------------------------------------------------
+services:
+
+  # ========== Backend API ==========
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: clearday-backend:${TAG:-latest}
+    container_name: clearday-backend
+    restart: unless-stopped
+    stop_grace_period: 15s
+
+    # --- Networking ---
+    networks:
+      - frontend-net      # reachable by nginx reverse proxy
+      - backend-net       # isolated internal tier
+    expose:
+      - "3000"            # internal only — not published to host by default
+
+    # --- Environment ---
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: ${BACKEND_PORT:-3000}
+      DATABASE_URL: ${DATABASE_URL:-./data/todos.db}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:${FRONTEND_HOST_PORT:-8080}}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      APP_VERSION: ${APP_VERSION:-1.0.0}
+      TZ: ${TZ:-UTC}
+
+    # --- Storage ---
+    volumes:
+      - todo-data:/app/data
+
+    # --- Health check — hits /api/health which queries the DB ---
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider",
+             "http://localhost:${BACKEND_PORT:-3000}/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+
+    # --- Resource limits ---
+    deploy:
+      resources:
+        limits:
+          cpus: "${BACKEND_CPU_LIMIT:-1.0}"
+          memory: ${BACKEND_MEM_LIMIT:-512M}
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+
+    # --- Security ---
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=64M
+
+    # --- Logging ---
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+        tag: "clearday-backend"
+
+  # ========== Frontend UI ==========
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: clearday-frontend:${TAG:-latest}
+    container_name: clearday-frontend
+    restart: unless-stopped
+    stop_grace_period: 5s
+
+    # --- Networking ---
+    networks:
+      - frontend-net      # talks to backend via reverse proxy
+    ports:
+      - "${FRONTEND_HOST_PORT:-8080}:8080"
+
+    # --- Environment ---
+    environment:
+      TZ: ${TZ:-UTC}
+
+    # --- Wait for backend to be healthy before accepting traffic ---
+    depends_on:
+      backend:
+        condition: service_healthy
+        restart: true
+
+    # --- Health check — lightweight /healthz stub (no SPA overhead) ---
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider",
+             "http://127.0.0.1:8080/healthz"]
+      interval: 30s
+      timeout: 5s
+      start_period: 5s
+      retries: 3
+
+    # --- Resource limits ---
+    deploy:
+      resources:
+        limits:
+          cpus: "${FRONTEND_CPU_LIMIT:-0.5}"
+          memory: ${FRONTEND_MEM_LIMIT:-128M}
+        reservations:
+          cpus: "0.1"
+          memory: 32M
+
+    # --- Security ---
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=32M
+      - /var/cache/nginx:size=32M,uid=1001,gid=1001
+      - /var/run:size=1M,uid=1001,gid=1001
+
+    # --- Logging ---
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+        tag: "clearday-frontend"
+
+  # ========== DB Admin (dev-only) ==========
+  # Lightweight SQLite browser — only starts with: docker compose --profile dev up
+  db-admin:
+    image: coleifer/sqlite-web:latest
+    container_name: clearday-db-admin
+    profiles:
+      - dev
+    networks:
+      - backend-net
+    ports:
+      - "${DB_ADMIN_PORT:-8081}:8080"
+    volumes:
+      - todo-data:/data:ro
+    environment:
+      SQLITE_DATABASE: /data/todos.db
+    depends_on:
+      backend:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 64M
+
+  # ========== Test Backend (test profile) ==========
+  # Isolated backend instance for integration/E2E tests
+  test-backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: clearday-backend:${TAG:-latest}
+    container_name: clearday-test-backend
+    profiles:
+      - test
+    networks:
+      - frontend-net
+      - backend-net
+    ports:
+      - "${TEST_BACKEND_PORT:-3001}:3000"
+    environment:
+      NODE_ENV: test
+      PORT: "3000"
+      DATABASE_URL: /tmp/test-todos.db
+      FRONTEND_URL: http://localhost:${FRONTEND_HOST_PORT:-8080}
+      LOG_LEVEL: ${TEST_LOG_LEVEL:-silent}
+      APP_VERSION: ${APP_VERSION:-1.0.0}-test
+      TZ: ${TZ:-UTC}
+    tmpfs:
+      - /tmp:size=64M
+      - /app/data:size=64M
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider",
+             "http://localhost:3000/api/health"]
+      interval: 5s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+

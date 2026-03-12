@@ -84,7 +84,7 @@ describe('Request log content', () => {
     const { logger } = await import('../../middleware/logger.js');
     const infoSpy = vi.spyOn(logger, 'info');
 
-    await request(app).get('/api/health');
+    await request(app).get('/api/todos');
 
     // The res 'finish' event fires asynchronously — give it a tick to complete
     await new Promise((resolve) => setTimeout(resolve, 10));
@@ -92,13 +92,13 @@ describe('Request log content', () => {
     // Find the request log call (logger.info is called with { method, path, status, duration })
     const logCall = infoSpy.mock.calls.find(
       (call) => typeof call[0] === 'object' && (call[0] as Record<string, unknown>).method === 'GET'
-        && (call[0] as Record<string, unknown>).path === '/api/health'
+        && (call[0] as Record<string, unknown>).path === '/api/todos'
     );
 
-    expect(logCall, 'Expected a log entry for GET /api/health').toBeDefined();
+    expect(logCall, 'Expected a log entry for GET /api/todos').toBeDefined();
     const logData = logCall![0] as Record<string, unknown>;
     expect(logData.method).toBe('GET');
-    expect(logData.path).toBe('/api/health');
+    expect(logData.path).toBe('/api/todos');
     expect(logData.status).toBe(200);
     expect(logData.duration).toEqual(expect.any(Number));
     expect(logData.duration).toBeGreaterThanOrEqual(0);
@@ -135,16 +135,33 @@ describe('Request log content', () => {
     const { logger } = await import('../../middleware/logger.js');
     const infoSpy = vi.spyOn(logger, 'info');
 
-    await request(app).get('/api/health');
+    await request(app).get('/api/todos');
 
     await new Promise((resolve) => setTimeout(resolve, 10));
 
     // The second argument to logger.info is the message string
     const logCall = infoSpy.mock.calls.find(
-      (call) => typeof call[1] === 'string' && (call[1] as string).includes('GET /api/health 200')
+      (call) => typeof call[1] === 'string' && (call[1] as string).includes('GET /api/todos 200')
     );
 
-    expect(logCall, 'Expected log message containing "GET /api/health 200"').toBeDefined();
+    expect(logCall, 'Expected log message containing "GET /api/todos 200"').toBeDefined();
+
+    infoSpy.mockRestore();
+  });
+
+  it('does not log health check probe requests (noise reduction) @p1', async () => {
+    const { logger } = await import('../../middleware/logger.js');
+    const infoSpy = vi.spyOn(logger, 'info');
+
+    await request(app).get('/api/health');
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+
+    const healthLogCall = infoSpy.mock.calls.find(
+      (call) => typeof call[0] === 'object' && (call[0] as Record<string, unknown>).path === '/api/health'
+    );
+
+    expect(healthLogCall, 'Health check requests should be filtered from logs').toBeUndefined();
 
     infoSpy.mockRestore();
   });

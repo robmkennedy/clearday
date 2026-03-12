@@ -8,6 +8,7 @@ import { dirname } from 'path';
  * Database connection
  *
  * Creates and exports a Drizzle ORM instance connected to SQLite.
+ * Auto-creates the schema on first run (e.g. fresh Docker volume).
  */
 
 const DATABASE_URL = process.env.DATABASE_URL || './data/todos.db';
@@ -23,6 +24,16 @@ const sqlite = new Database(DATABASE_URL);
 
 // Enable WAL mode for better concurrent access
 sqlite.pragma('journal_mode = WAL');
+
+// Auto-create tables if they don't exist (handles fresh Docker volumes)
+sqlite.exec(`
+  CREATE TABLE IF NOT EXISTS todos (
+    id TEXT PRIMARY KEY,
+    text TEXT NOT NULL,
+    completed INTEGER NOT NULL DEFAULT false,
+    created_at TEXT NOT NULL
+  )
+`);
 
 // Create Drizzle ORM instance
 export const db = drizzle(sqlite, { schema });

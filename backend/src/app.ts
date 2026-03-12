@@ -46,8 +46,11 @@ export function createApp() {
   });
   app.use('/api/', apiLimiter);
 
-  // 4. Request logging
+  // 4. Request logging (health probes filtered to reduce log noise)
   app.use((req, res, next) => {
+    if (req.path === '/api/health') {
+      return next();
+    }
     const start = Date.now();
     res.on('finish', () => {
       logger.info(
@@ -68,13 +71,37 @@ export function createApp() {
   app.use(express.urlencoded({ extended: false, limit: '100kb' }));
 
   // 5. Health check endpoint (before auth in future)
+  // Returns enriched diagnostics for container orchestration and monitoring
   app.get('/api/health', async (_req, res) => {
+    const checks: Record<string, { status: string; latency?: number; message?: string }> = {};
+
+    // Database connectivity check with latency measurement
     try {
+      const dbStart = Date.now();
       await db.select().from(schema.todos).limit(1);
-      res.json({ status: 'healthy', timestamp: new Date().toISOString() });
-    } catch {
-      res.status(503).json({ status: 'unhealthy' });
+      checks.database = { status: 'pass', latency: Date.now() - dbStart };
+    } catch (err) {
+      checks.database = {
+        status: 'fail',
+        message: err instanceof Error ? err.message : 'Unknown database error',
+      };
     }
+
+    const isHealthy = Object.values(checks).every((c) => c.status === 'pass');
+    const mem = process.memoryUsage();
+
+    res.status(isHealthy ? 200 : 503).json({
+      status: isHealthy ? 'healthy' : 'unhealthy',
+      timestamp: new Date().toISOString(),
+      version: process.env.APP_VERSION || '1.0.0',
+      uptime: Math.floor(process.uptime()),
+      checks,
+      memory: {
+        rss: Math.round(mem.rss / 1024 / 1024),
+        heapUsed: Math.round(mem.heapUsed / 1024 / 1024),
+        heapTotal: Math.round(mem.heapTotal / 1024 / 1024),
+      },
+    });
   });
 
   // 6. API Routes

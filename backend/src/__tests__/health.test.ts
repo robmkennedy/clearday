@@ -17,7 +17,7 @@ describe('GET /api/health', () => {
     const response = await request(app).get('/api/health');
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({
+    expect(response.body).toMatchObject({
       status: 'healthy',
       timestamp: expect.any(String),
     });
@@ -43,6 +43,39 @@ describe('GET /api/health', () => {
     const duration = Date.now() - start;
 
     expect(duration).toBeLessThan(100);
+  });
+
+  it('includes version field S5-001-AC1 @p1', async () => {
+    const response = await request(app).get('/api/health');
+
+    expect(response.body.version).toEqual(expect.any(String));
+  });
+
+  it('includes uptime as a non-negative integer S5-001-AC1 @p1', async () => {
+    const response = await request(app).get('/api/health');
+
+    expect(response.body.uptime).toEqual(expect.any(Number));
+    expect(response.body.uptime).toBeGreaterThanOrEqual(0);
+  });
+
+  it('includes checks.database with pass status and latency S5-001-AC1 @p1', async () => {
+    const response = await request(app).get('/api/health');
+
+    expect(response.body.checks).toBeDefined();
+    expect(response.body.checks.database).toMatchObject({
+      status: 'pass',
+      latency: expect.any(Number),
+    });
+  });
+
+  it('includes memory usage metrics in MB S5-001-AC1 @p2', async () => {
+    const response = await request(app).get('/api/health');
+
+    expect(response.body.memory).toMatchObject({
+      rss: expect.any(Number),
+      heapUsed: expect.any(Number),
+      heapTotal: expect.any(Number),
+    });
   });
 });
 
@@ -72,7 +105,16 @@ describe('GET /api/health (unhealthy state)', () => {
     const response = await request(unhealthyApp).get('/api/health');
 
     expect(response.status).toBe(503);
-    expect(response.body).toEqual({ status: 'unhealthy' });
+    expect(response.body).toMatchObject({
+      status: 'unhealthy',
+      timestamp: expect.any(String),
+      checks: {
+        database: {
+          status: 'fail',
+          message: expect.stringContaining('SQLITE_CANTOPEN'),
+        },
+      },
+    });
 
     vi.restoreAllMocks();
     vi.resetModules();
@@ -101,6 +143,7 @@ describe('GET /api/health (unhealthy state)', () => {
 
     expect(response.status).toBe(503);
     expect(response.headers['content-type']).toMatch(/application\/json/);
+    expect(response.body.checks.database.status).toBe('fail');
 
     vi.restoreAllMocks();
     vi.resetModules();

@@ -18,7 +18,13 @@
     "test:shared": "vitest --run",
     "test:e2e": "playwright test",
     "lint": "eslint . --ext .ts,.tsx",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "docker:dev": "docker compose --env-file .env.development up --build",
+    "docker:test": "docker compose --env-file .env.test up --build",
+    "docker:prod": "docker compose --env-file .env.production up --build -d",
+    "docker:down": "docker compose down",
+    "docker:down:v": "docker compose down -v",
+    "docker:logs": "docker compose logs -f"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",

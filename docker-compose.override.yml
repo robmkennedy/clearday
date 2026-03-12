@@ -1,0 +1,40 @@
+# =============================================================================
+# Docker Compose Override — Development Environment
+# =============================================================================
+#
+# This file is AUTOMATICALLY loaded by `docker compose up` when present.
+# It overrides the base docker-compose.yml with dev-friendly settings:
+#   - NODE_ENV=development with debug logging
+#   - Backend port exposed on host for direct API testing
+#   - Relaxed read-only filesystem for debugging
+#   - Dev tools (db-admin) auto-started
+#
+# To skip this override (production mode), use an explicit -f flag:
+#   docker compose -f docker-compose.yml up
+#
+# Or use the env-file shortcut:
+#   docker compose --env-file .env.production up
+#
+
+services:
+
+  # ---------- Backend: dev overrides ----------
+  backend:
+    environment:
+      # NOTE: NODE_ENV stays "production" because the Docker image is a production
+      # build (no devDependencies). Dev behaviour is controlled by the vars below.
+      LOG_LEVEL: ${LOG_LEVEL:-debug}
+      # In dev, CORS allows the Vite dev server origin when running frontend natively
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+    ports:
+      - "${BACKEND_HOST_PORT:-3000}:3000"   # expose API directly on host
+    # Relax production security for dev/debugging
+    read_only: false
+    security_opt: []
+
+  # ---------- Frontend: dev overrides ----------
+  frontend:
+    # Relax production security for dev/debugging
+    read_only: false
+    security_opt: []
+
