@@ -84,7 +84,7 @@ export function setupThemeTestEnv(options: {
   const matchMediaMock = createMatchMediaMock(systemPrefersDark);
 
   if (savedTheme) {
-    localStorageMock._setStore({ 'bmad-todo-theme': savedTheme });
+    localStorageMock._setStore({ 'clearday-theme': savedTheme });
   }
 
   Object.defineProperty(global, 'localStorage', {

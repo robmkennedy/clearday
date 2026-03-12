@@ -36,7 +36,7 @@
 
 ### Task 2: Implement theme application and persistence
 - [x] 2.1 Implement useEffect to set `document.documentElement.dataset.theme` when theme changes
-- [x] 2.2 Implement localStorage save on theme change (`bmad-todo-theme` key)
+- [x] 2.2 Implement localStorage save on theme change (`clearday-theme` key)
 - [x] 2.3 Write unit tests for theme application and persistence
 
 ### Task 3: Implement toggleTheme function
@@ -61,7 +61,7 @@
 
 ### Architecture References
 - Hook location: `frontend/src/hooks/useTheme.ts`
-- localStorage key: `bmad-todo-theme`
+- localStorage key: `clearday-theme`
 - Architecture spec (Section 6.3): CSS custom properties with `data-theme` attribute
 
 ### Existing Patterns
@@ -80,7 +80,7 @@ export function useTheme(): {
 ```
 
 ### Theme Detection Priority
-1. User preference saved in localStorage (`bmad-todo-theme`)
+1. User preference saved in localStorage (`clearday-theme`)
 2. System preference via `prefers-color-scheme` media query
 3. Default to light mode
 
@@ -101,7 +101,7 @@ export function useTheme(): {
 ### Completion Notes
 - Implemented useTheme hook with system preference detection priority: localStorage → matchMedia → light default
 - Hook returns `{ theme, toggleTheme, isDark }` per AC6
-- localStorage key: `bmad-todo-theme`
+- localStorage key: `clearday-theme`
 - Sets `document.documentElement.dataset.theme` for CSS integration
 - System preference listener with proper cleanup on unmount
 - useCallback for stable toggleTheme reference

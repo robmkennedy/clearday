@@ -1,6 +1,6 @@
 # Sprint 1 Test Plan
 
-## BMad Todo Application
+## Clearday Application
 
 **Version:** 1.0  
 **Date:** March 5, 2026  
@@ -64,7 +64,7 @@ SQLite: 3.x (via better-sqlite3)
 ### 2.3 Test Configuration Files
 
 ```
-bmad-todo/
+clearday/
 ├── vitest.config.ts              # Root Vitest config
 ├── playwright.config.ts          # E2E test config
 ├── frontend/

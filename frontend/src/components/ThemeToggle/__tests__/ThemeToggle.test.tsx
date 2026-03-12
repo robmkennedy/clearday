@@ -53,7 +53,7 @@ describe('ThemeToggle', () => {
 
   describe('icon display', () => {
     it('S4-002-AC1: displays sun icon (☀️) when in light mode', () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
 
       render(<ThemeToggle />);
 
@@ -61,7 +61,7 @@ describe('ThemeToggle', () => {
     });
 
     it('S4-002-AC2: displays moon icon (🌙) when in dark mode', () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'dark' });
+      localStorageMock._setStore({ 'clearday-theme': 'dark' });
 
       render(<ThemeToggle />);
 
@@ -71,7 +71,7 @@ describe('ThemeToggle', () => {
 
   describe('toggle functionality', () => {
     it('S4-002-AC3: switches from light to dark on click', async () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
       const user = userEvent.setup();
 
       await act(async () => {
@@ -89,7 +89,7 @@ describe('ThemeToggle', () => {
     });
 
     it('S4-002-AC3: switches from dark to light on click', async () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'dark' });
+      localStorageMock._setStore({ 'clearday-theme': 'dark' });
       const user = userEvent.setup();
 
       await act(async () => {
@@ -107,7 +107,7 @@ describe('ThemeToggle', () => {
     });
 
     it('updates localStorage when toggled', async () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
       const user = userEvent.setup();
 
       await act(async () => {
@@ -118,13 +118,13 @@ describe('ThemeToggle', () => {
         await user.click(screen.getByTestId('theme-toggle'));
       });
 
-      expect(localStorageMock.setItem).toHaveBeenCalledWith('bmad-todo-theme', 'dark');
+      expect(localStorageMock.setItem).toHaveBeenCalledWith('clearday-theme', 'dark');
     });
   });
 
   describe('accessibility', () => {
     it('S4-002-AC5: has aria-label "Switch to dark mode" when in light mode', () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
 
       render(<ThemeToggle />);
 
@@ -133,7 +133,7 @@ describe('ThemeToggle', () => {
     });
 
     it('S4-002-AC5: has aria-label "Switch to light mode" when in dark mode', () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'dark' });
+      localStorageMock._setStore({ 'clearday-theme': 'dark' });
 
       render(<ThemeToggle />);
 
@@ -165,7 +165,7 @@ describe('ThemeToggle', () => {
 
   describe('keyboard accessibility', () => {
     it('S4-002-AC8: can be activated with Enter key', async () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
       const user = userEvent.setup();
 
       await act(async () => {
@@ -183,7 +183,7 @@ describe('ThemeToggle', () => {
     });
 
     it('S4-002-AC8: can be activated with Space key', async () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
       const user = userEvent.setup();
 
       await act(async () => {
@@ -216,7 +216,7 @@ describe('ThemeToggle', () => {
 
   describe('aria-label updates', () => {
     it('updates aria-label after toggle', async () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
       const user = userEvent.setup();
 
       await act(async () => {

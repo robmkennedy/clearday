@@ -3,7 +3,7 @@
 # Version: 6.0.4
 # Date: 2026-03-05T20:09:09.562Z
 
-project_name: bmad-todo
+project_name: clearday
 user_skill_level: intermediate
 planning_artifacts: "{project-root}/_bmad-output/planning-artifacts"
 implementation_artifacts: "{project-root}/_bmad-output/implementation-artifacts"

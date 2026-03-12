@@ -13,7 +13,7 @@
 
 ## Sprint Goal Statement
 
-> Harden the application for production deployment: add health check endpoint with database verification, security headers via Helmet, CORS configuration, structured logging with Pino, production build serving from Express, and fully verified testing infrastructure with coverage thresholds. After this sprint, bmad-todo is deployable and observable.
+> Harden the application for production deployment: add health check endpoint with database verification, security headers via Helmet, CORS configuration, structured logging with Pino, production build serving from Express, and fully verified testing infrastructure with coverage thresholds. After this sprint, clearday is deployable and observable.
 
 ---
 
@@ -230,14 +230,14 @@ For each story to be considered "Done":
 
 ## Sprint Notes
 
-- This is the **final sprint** for bmad-todo — completing Epic 7 means the full project is done! 🎉
+- This is the **final sprint** for clearday — completing Epic 7 means the full project is done! 🎉
 - All four stories complete Epic 7: Production Readiness
 - After this sprint, all 7 epics will be **done**
 - Focus is on backend/infrastructure — no UI changes in this sprint
 - Security and logging are production essentials — don't skip Helmet or Pino
 - Testing infrastructure verification ensures the full test pyramid is solid
 - Consider running a final Epic 7 retrospective after completion
-- **Project celebration** — bmad-todo ships! 🚀
+- **Project celebration** — clearday ships! 🚀
 
 ---
 

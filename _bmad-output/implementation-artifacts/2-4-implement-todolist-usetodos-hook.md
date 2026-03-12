@@ -48,7 +48,7 @@
 - Query key: `['todos']`
 - Fetch from `/api/todos`
 - Configure staleTime (1 minute default already in QueryClient)
-- Use shared `Todo` type from `@bmad-todo/shared`
+- Use shared `Todo` type from `@clearday/shared`
 
 ### Existing Patterns
 - `TaskInput` component pattern: component folder with `.tsx`, `.module.css`, `index.ts`
@@ -75,7 +75,7 @@
 - Refactored `App.tsx` to use `TodoList` component, removed inline fetching
 
 ### Debug Log
-- Fixed import path: `@bmad-todo/shared` → `@shared/types` (matching tsconfig paths)
+- Fixed import path: `@clearday/shared` → `@shared/types` (matching tsconfig paths)
 - Renamed test file `.ts` → `.tsx` for JSX support
 
 ### Completion Notes

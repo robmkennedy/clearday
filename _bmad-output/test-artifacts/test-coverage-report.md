@@ -1,4 +1,4 @@
-# Test Coverage Report — BMad Todo
+# Test Coverage Report — Clearday
 
 **Date:** March 12, 2026  
 **Author:** Murat (TEA — Master Test Architect)  
@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-The BMad Todo application has **comprehensive, multi-layer test coverage** across all 7 epics and 27 stories. The test pyramid is well-shaped: a strong unit/component base, targeted integration tests, and strategic E2E coverage for critical paths.
+The Clearday application has **comprehensive, multi-layer test coverage** across all 7 epics and 27 stories. The test pyramid is well-shaped: a strong unit/component base, targeted integration tests, and strategic E2E coverage for critical paths.
 
 | Metric | Value |
 |--------|-------|

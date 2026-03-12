@@ -25,7 +25,7 @@ baseTest.describe('Theme Toggle', () => {
   baseTest.beforeEach(async ({ page }) => {
     // Clear localStorage to start fresh
     await page.addInitScript(() => {
-      localStorage.removeItem('bmad-todo-theme');
+      localStorage.removeItem('clearday-theme');
     });
   });
 
@@ -90,7 +90,7 @@ baseTest.describe('Theme Persistence', () => {
     await page.addInitScript(() => {
       // This only runs on the first navigation, not reload
       if (!sessionStorage.getItem('theme-test-started')) {
-        localStorage.removeItem('bmad-todo-theme');
+        localStorage.removeItem('clearday-theme');
         sessionStorage.setItem('theme-test-started', 'true');
       }
     });
@@ -122,7 +122,7 @@ baseTest.describe('System Preference Detection', () => {
 
     // Clear localStorage
     await page.addInitScript(() => {
-      localStorage.removeItem('bmad-todo-theme');
+      localStorage.removeItem('clearday-theme');
     });
 
     await page.goto('/');
@@ -143,7 +143,7 @@ baseTest.describe('System Preference Detection', () => {
 
     // Clear localStorage
     await page.addInitScript(() => {
-      localStorage.removeItem('bmad-todo-theme');
+      localStorage.removeItem('clearday-theme');
     });
 
     await page.goto('/');
@@ -164,7 +164,7 @@ baseTest.describe('System Preference Detection', () => {
 
     // Set localStorage to light before navigation
     await page.addInitScript(() => {
-      localStorage.setItem('bmad-todo-theme', 'light');
+      localStorage.setItem('clearday-theme', 'light');
     });
 
     await page.goto('/');
@@ -181,7 +181,7 @@ baseTest.describe('Theme Flash Prevention', () => {
   baseTest('no flash of wrong theme on dark mode reload @p1', async ({ page }) => {
     // Set dark theme in localStorage before navigation
     await page.addInitScript(() => {
-      localStorage.setItem('bmad-todo-theme', 'dark');
+      localStorage.setItem('clearday-theme', 'dark');
     });
 
     await page.goto('/');
@@ -209,7 +209,7 @@ baseTest.describe('Theme Flash Prevention', () => {
   baseTest('data-theme is set before React hydration @p1', async ({ page }) => {
     // Set dark theme preference
     await page.addInitScript(() => {
-      localStorage.setItem('bmad-todo-theme', 'dark');
+      localStorage.setItem('clearday-theme', 'dark');
     });
 
     // Intercept and check the HTML before any scripts run
@@ -220,7 +220,7 @@ baseTest.describe('Theme Flash Prevention', () => {
         const html = await response.text();
         // The blocking script should set data-theme="dark"
         // We verify the script exists in the head
-        const hasBlockingScript = html.includes('bmad-todo-theme') && html.includes("document.documentElement.dataset.theme");
+        const hasBlockingScript = html.includes('clearday-theme') && html.includes("document.documentElement.dataset.theme");
         if (hasBlockingScript) {
           htmlThemeBeforeScripts = 'script-present';
         }
@@ -241,7 +241,7 @@ test.describe('Dark Mode Accessibility', () => {
   test.beforeEach(async ({ page }) => {
     // Set dark theme before navigation
     await page.addInitScript(() => {
-      localStorage.setItem('bmad-todo-theme', 'dark');
+      localStorage.setItem('clearday-theme', 'dark');
     });
   });
 

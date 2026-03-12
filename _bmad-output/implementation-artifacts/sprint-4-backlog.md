@@ -43,7 +43,7 @@
 
 **Technical Notes:**
 - Hook location: `frontend/src/hooks/useTheme.ts`
-- localStorage key: `bmad-todo-theme`
+- localStorage key: `clearday-theme`
 - Use `window.matchMedia('(prefers-color-scheme: dark)')` for system detection
 - Update `document.documentElement.dataset.theme` for CSS integration
 - Consider using React context for global theme access
@@ -139,7 +139,7 @@
   ```html
   <script>
     (function() {
-      const saved = localStorage.getItem('bmad-todo-theme');
+      const saved = localStorage.getItem('clearday-theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
     })();

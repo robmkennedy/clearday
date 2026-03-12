@@ -1,6 +1,6 @@
 # User Journey Maps
 
-## BMad Todo Application
+## Clearday Application
 
 **Version:** 1.1  
 **Date:** March 5, 2026  
@@ -49,7 +49,7 @@ Maya is between meetings and remembers she needs to follow up with a client. She
 
 | Aspect | Details |
 |--------|---------|
-| **Context** | Maya's colleague mentions BMad Todo during lunch. "It's dead simple, just open and use." |
+| **Context** | Maya's colleague mentions Clearday during lunch. "It's dead simple, just open and use." |
 | **Action** | Opens the URL on her phone while walking back to her desk |
 | **Thought** | *"Another todo app? Let's see if this one is actually simple..."* |
 | **Emotion** | 😐 Skeptical but curious |
@@ -148,7 +148,7 @@ Morning                    Midday                     Evening
 
 | Aspect | Details |
 |--------|---------|
-| **Context** | 2 weeks later — BMad Todo is now part of daily routine |
+| **Context** | 2 weeks later — Clearday is now part of daily routine |
 | **Action** | Opens app reflexively, captures without thinking |
 | **Thought** | *"I finally have a system that doesn't fight me."* |
 | **Emotion** | 😍 Loyal, advocates to colleagues |
@@ -185,7 +185,7 @@ Skeptical → Surprised → Relieved → Confident → Loyal
 ## Journey 2: David Park — The Focused Minimalist
 
 ### Scenario
-David is frustrated with his current tools. He wants a simple list that doesn't try to "manage" him. He's heard about BMad Todo's minimalist approach.
+David is frustrated with his current tools. He wants a simple list that doesn't try to "manage" him. He's heard about Clearday's minimalist approach.
 
 ### Journey Phases
 
@@ -203,7 +203,7 @@ David is frustrated with his current tools. He wants a simple list that doesn't 
 | Aspect | Details |
 |--------|---------|
 | **Context** | Sunday evening, clearing digital clutter |
-| **Action** | Opens BMad Todo, inspects the interface carefully |
+| **Action** | Opens Clearday, inspects the interface carefully |
 | **Thought** | *"Please don't have a million features... please..."* |
 | **Emotion** | 😐 Cautiously hopeful |
 | **Touchpoint** | Desktop browser, direct URL |
@@ -320,7 +320,7 @@ Total time: 2-3 minutes
 
 | Aspect | Details |
 |--------|---------|
-| **Context** | 3 months later — BMad Todo is his only task tool |
+| **Context** | 3 months later — Clearday is his only task tool |
 | **Action** | Recommends it to freelancer friends |
 | **Thought** | *"Finally, an app that respects my attention."* |
 | **Emotion** | 😍 Devoted advocate |
@@ -379,7 +379,7 @@ Jordan is overwhelmed with midterms, a hackathon, and work shifts. They need to 
 | Aspect | Details |
 |--------|---------|
 | **Context** | Sunday night panic — "What do I have to do this week?!" |
-| **Action** | Opens BMad Todo, starts rapid-fire adding everything |
+| **Action** | Opens Clearday, starts rapid-fire adding everything |
 | **Thought** | *"Get it all out of my head. Get it all out."* |
 | **Emotion** | 😤 → 😊 Anxious → Relieved |
 | **Touchpoint** | Laptop, browser |
@@ -499,7 +499,7 @@ Target time: < 10 seconds total
 
 | Aspect | Details |
 |--------|---------|
-| **Context** | 1 month later — BMad Todo is daily driver |
+| **Context** | 1 month later — Clearday is daily driver |
 | **Action** | Explores source code on GitHub, shares with CS friends |
 | **Thought** | *"Clean code AND clean UX. Nice."* |
 | **Emotion** | 😍 Impressed, inspired |

@@ -80,7 +80,7 @@ describe('useTheme', () => {
     });
 
     it('S4-001-AC3: returns saved light theme from localStorage (ignores system preference)', () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
       Object.defineProperty(global, 'matchMedia', {
         value: createMatchMediaMock(true), // System prefers dark
         writable: true,
@@ -93,7 +93,7 @@ describe('useTheme', () => {
     });
 
     it('S4-001-AC3: returns saved dark theme from localStorage (ignores system preference)', () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'dark' });
+      localStorageMock._setStore({ 'clearday-theme': 'dark' });
       Object.defineProperty(global, 'matchMedia', {
         value: createMatchMediaMock(false), // System prefers light
         writable: true,
@@ -106,7 +106,7 @@ describe('useTheme', () => {
     });
 
     it('ignores invalid localStorage value and uses system preference', () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'invalid-value' });
+      localStorageMock._setStore({ 'clearday-theme': 'invalid-value' });
       Object.defineProperty(global, 'matchMedia', {
         value: createMatchMediaMock(true),
         writable: true,
@@ -153,7 +153,7 @@ describe('useTheme', () => {
         result.current.toggleTheme();
       });
 
-      expect(localStorageMock.setItem).toHaveBeenCalledWith('bmad-todo-theme', 'dark');
+      expect(localStorageMock.setItem).toHaveBeenCalledWith('clearday-theme', 'dark');
     });
   });
 
@@ -173,7 +173,7 @@ describe('useTheme', () => {
     });
 
     it('toggles from dark to light', () => {
-      localStorageMock._setStore({ 'bmad-todo-theme': 'dark' });
+      localStorageMock._setStore({ 'clearday-theme': 'dark' });
 
       const { result } = renderHook(() => useTheme());
 
@@ -273,7 +273,7 @@ describe('useTheme', () => {
 
     it('ignores system preference change when user has explicit preference', () => {
       // User explicitly set to light
-      localStorageMock._setStore({ 'bmad-todo-theme': 'light' });
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
 
       const mockMatchMedia = createMatchMediaMock(false);
       Object.defineProperty(global, 'matchMedia', {

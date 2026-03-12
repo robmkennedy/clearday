@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A simple, reliable todo application" />
-    <title>BMad Todo</title>
+    <meta name="description" content="Clearday — A simple, reliable todo application" />
+    <title>Clearday</title>
     <!-- Theme flash prevention - must run before CSS loads -->
     <script>
       (function() {
-        var saved = localStorage.getItem('bmad-todo-theme');
+        var saved = localStorage.getItem('clearday-theme');
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         // Only use saved value if it's valid ('light' or 'dark')
         var theme = (saved === 'light' || saved === 'dark') ? saved : (prefersDark ? 'dark' : 'light');

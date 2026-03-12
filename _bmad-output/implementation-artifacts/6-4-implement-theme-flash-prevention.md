@@ -27,7 +27,7 @@
 
 ### Task 1: Add blocking theme script to index.html
 - [x] 1.1 Add inline `<script>` in `<head>` before CSS links
-- [x] 1.2 Script checks localStorage for 'bmad-todo-theme'
+- [x] 1.2 Script checks localStorage for 'clearday-theme'
 - [x] 1.3 Script falls back to prefers-color-scheme media query
 - [x] 1.4 Script defaults to 'light' if no preference
 - [x] 1.5 Script sets document.documentElement.dataset.theme
@@ -48,7 +48,7 @@
 ```html
 <script>
   (function() {
-    const saved = localStorage.getItem('bmad-todo-theme');
+    const saved = localStorage.getItem('clearday-theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
   })();

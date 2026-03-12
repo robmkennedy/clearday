@@ -8,7 +8,7 @@ export type Theme = 'light' | 'dark';
 /**
  * localStorage key for theme persistence
  */
-const STORAGE_KEY = 'bmad-todo-theme';
+const STORAGE_KEY = 'clearday-theme';
 
 /**
  * Check if code is running in browser environment

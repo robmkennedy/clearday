@@ -2,17 +2,17 @@
 stepsCompleted: ['step-01-validate-prerequisites', 'step-02-design-epics', 'step-03-create-stories', 'step-04-final-validation']
 inputDocuments: ['prd.md (v1.1)', 'architecture.md (v1.3)', 'ux-architecture-handoff.md (v1.0)', 'jobs-to-be-done.md (v1.1)', 'wireframes.md (v1.1)', 'accessibility-audit.md (v1.1)']
 workflowType: 'epics-and-stories'
-project_name: 'bmad-todo'
+project_name: 'clearday'
 user_name: 'Rob'
 date: '2026-03-05'
 status: 'complete'
 ---
 
-# bmad-todo - Epic Breakdown
+# clearday - Epic Breakdown
 
 ## Overview
 
-This document provides the complete epic and story breakdown for bmad-todo, decomposing the requirements from the PRD, UX Design, and Architecture requirements into implementable stories.
+This document provides the complete epic and story breakdown for clearday, decomposing the requirements from the PRD, UX Design, and Architecture requirements into implementable stories.
 
 ## Requirements Inventory
 

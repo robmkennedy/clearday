@@ -1,6 +1,6 @@
 # Wireframes & UI Specifications
 
-## BMad Todo Application
+## Clearday Application
 
 **Version:** 1.1  
 **Date:** March 5, 2026  
@@ -11,7 +11,7 @@
 
 ## Overview
 
-This document contains low-fidelity wireframes and UI specifications for BMad Todo v1.0. These wireframes are designed to fulfill the jobs identified in `jobs-to-be-done.md`, particularly:
+This document contains low-fidelity wireframes and UI specifications for Clearday v1.0. These wireframes are designed to fulfill the jobs identified in `jobs-to-be-done.md`, particularly:
 
 - **F1:** Capture tasks instantly (< 10 seconds)
 - **F2:** See all tasks at a glance
@@ -35,11 +35,11 @@ This document contains low-fidelity wireframes and UI specifications for BMad To
 
 ### Screen Inventory
 
-BMad Todo v1.0 has exactly **one screen** with multiple states:
+Clearday v1.0 has exactly **one screen** with multiple states:
 
 ```
 ┌─────────────────────────────────────┐
-│           BMad Todo App             │
+│           Clearday App             │
 ├─────────────────────────────────────┤
 │                                     │
 │  ┌─────────────────────────────┐   │
@@ -78,7 +78,7 @@ The first thing a new user sees. Must communicate purpose instantly.
 │                                                                            │
 │                              ╭──────────────────────────────────────╮      │
 │                              │                                      │      │
-│                              │            📝 BMad Todo              │      │
+│                              │            📝 Clearday              │      │
 │                              │                                      │      │
 │                              ╰──────────────────────────────────────╯      │
 │                                                                            │
@@ -133,7 +133,7 @@ The primary view users will see during daily use. Tasks are organized into two s
 │                                                                            │
 │                                                                            │
 │                              ╭──────────────────────────────────────╮      │
-│                              │            📝 BMad Todo              │      │
+│                              │            📝 Clearday              │      │
 │                              ╰──────────────────────────────────────╯      │
 │                                                                            │
 │         ┌────────────────────────────────────────────────────────┐        │
@@ -249,7 +249,7 @@ Shown briefly while fetching tasks.
 ┌────────────────────────────────────────────────────────────────────────────┐
 │                                                                            │
 │                              ╭──────────────────────────────────────╮      │
-│                              │            📝 BMad Todo              │      │
+│                              │            📝 Clearday              │      │
 │                              ╰──────────────────────────────────────╯      │
 │                                                                            │
 │         ┌────────────────────────────────────────────────────────┐        │
@@ -289,7 +289,7 @@ Shown when API fails to load tasks.
 ┌────────────────────────────────────────────────────────────────────────────┐
 │                                                                            │
 │                              ╭──────────────────────────────────────╮      │
-│                              │            📝 BMad Todo              │      │
+│                              │            📝 Clearday              │      │
 │                              ╰──────────────────────────────────────╯      │
 │                                                                            │
 │         ┌────────────────────────────────────────────────────────┐        │
@@ -329,7 +329,7 @@ Responsive design for phones (< 768px).
 ```
 ┌─────────────────────────────┐
 │                             │
-│       📝 BMad Todo          │
+│       📝 Clearday          │
 │                             │
 ├─────────────────────────────┤
 │                             │
@@ -372,7 +372,7 @@ Responsive design for phones (< 768px).
 
 ```
 ┌─────────────────────────────┐
-│       📝 BMad Todo          │
+│       📝 Clearday          │
 ├─────────────────────────────┤
 │                             │
 │ ┌─────────────────────────┐ │
@@ -421,7 +421,7 @@ Shows keyboard state with input at top for thumb access.
 
 ```
 ┌─────────────────────────────┐
-│       📝 BMad Todo          │
+│       📝 Clearday          │
 ├─────────────────────────────┤
 │                             │
 │ ┌─────────────────────────┐ │
@@ -713,14 +713,14 @@ COMPLETED:
 ```
 LIGHT MODE HEADER:
 ┌────────────────────────────────────────────────────────────────────────────┐
-│                        📝 BMad Todo                          [☀️]          │
+│                        📝 Clearday                          [☀️]          │
 └────────────────────────────────────────────────────────────────────────────┘
                                                                 │
                                                                 └── Theme toggle
 
 DARK MODE HEADER:
 ┌────────────────────────────────────────────────────────────────────────────┐
-│                        📝 BMad Todo                          [🌙]          │
+│                        📝 Clearday                          [🌙]          │
 └────────────────────────────────────────────────────────────────────────────┘
                                                                 │
                                                                 └── Theme toggle
@@ -775,7 +775,7 @@ const getInitialTheme = () => {
 ┌────────────────────────────────────────────────────────────────────────────┐
 │ ██████████████████████████████████████████████████████████████████████████ │
 │ █                                                              [🌙]      █ │
-│ █                         📝 BMad Todo                                   █ │
+│ █                         📝 Clearday                                   █ │
 │ █                                                                        █ │
 │ █      ┌────────────────────────────────────────────────────────┐       █ │
 │ █      │  ○  What needs to be done?                         [+] │       █ │

@@ -1,7 +1,7 @@
 {
-  "name": "bmad-todo",
+  "name": "clearday",
   "version": "1.0.0",
-  "description": "A simple, reliable todo application built with the BMAD method",
+  "description": "Clearday — A simple, reliable todo application built with the BMAD method",
   "private": true,
   "workspaces": [
     "frontend",

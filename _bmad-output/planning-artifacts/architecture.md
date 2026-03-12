@@ -2,14 +2,14 @@
 stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8]
 inputDocuments: ['prd.md', 'ux-architecture-handoff.md']
 workflowType: 'architecture'
-project_name: 'bmad-todo'
+project_name: 'clearday'
 user_name: 'Rob'
 date: '2026-03-05'
 ---
 
 # Architecture Document
 
-## BMad Todo Application
+## Clearday Application
 
 **Version:** 1.3  
 **Date:** March 5, 2026  
@@ -22,7 +22,7 @@ date: '2026-03-05'
 
 ## 1. Executive Summary
 
-This document defines the technical architecture for BMad Todo — a single-user task management application prioritizing simplicity, reliability, and developer ergonomics. The architecture employs a modern, minimal stack that satisfies all PRD requirements while remaining easy to understand, deploy, and extend.
+This document defines the technical architecture for Clearday — a single-user task management application prioritizing simplicity, reliability, and developer ergonomics. The architecture employs a modern, minimal stack that satisfies all PRD requirements while remaining easy to understand, deploy, and extend.
 
 ### 1.1 Architecture Philosophy
 
@@ -166,7 +166,7 @@ This document defines the technical architecture for BMad Todo — a single-user
 ### 3.2 Project Structure
 
 ```
-bmad-todo/
+clearday/
 ├── frontend/                    # React SPA
 │   ├── src/
 │   │   ├── components/          # React components
@@ -388,7 +388,7 @@ interface ApiError {
 ```
 App
 ├── Header
-│   ├── App title ("📝 BMad Todo")
+│   ├── App title ("📝 Clearday")
 │   └── ThemeToggle (sun/moon icon, toggles light/dark mode)
 ├── TodoInput
 │   └── Input field + Add button

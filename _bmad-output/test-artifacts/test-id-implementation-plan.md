@@ -8,7 +8,7 @@
 
 ## Overview
 
-This document outlines the test ID scheme for the bmad-todo project to enable requirements traceability between user stories and test cases.
+This document outlines the test ID scheme for the clearday project to enable requirements traceability between user stories and test cases.
 
 ## Test ID Format
 
