@@ -1,4 +1,4 @@
-# Accessibility Report — Clearday
+# Accessibility Report — ClearDay
 
 **Date:** March 12, 2026  
 **Author:** Murat (TEA — Master Test Architect)  
@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-The Clearday application demonstrates **strong accessibility compliance** with WCAG 2.1 Level AA. Automated axe-core scans pass with **zero violations** in both light and dark themes, across empty state and content-populated states. Keyboard navigation, ARIA semantics, touch targets, and reduced-motion support are all well-implemented.
+The ClearDay application demonstrates **strong accessibility compliance** with WCAG 2.1 Level AA. Automated axe-core scans pass with **zero violations** in both light and dark themes, across empty state and content-populated states. Keyboard navigation, ARIA semantics, touch targets, and reduced-motion support are all well-implemented.
 
 **5 findings** were identified through manual code review — **all 5 have been remediated** as of this revision.
 
@@ -104,7 +104,7 @@ The Clearday application demonstrates **strong accessibility compliance** with W
 <html lang="en">                          ← 3.1.1 Language
   <body>
     <header>                               ← Landmark
-      <h1>Clearday</h1>                   ← Heading hierarchy
+      <h1>ClearDay</h1>                   ← Heading hierarchy
       <button aria-label="Switch to...">   ← Theme toggle
     </header>
     <main>                                 ← Landmark
@@ -238,9 +238,9 @@ No time limits, auto-refresh, or session timeouts. Loading states persist until 
 | Criterion | Requirement | Evidence | Status |
 |-----------|-------------|----------|--------|
 | 2.4.1 Bypass Blocks | Skip to content | ✅ Skip link added (A11Y-04) | ✅ |
-| 2.4.2 Page Titled | Descriptive `<title>` | "Clearday" | ✅ |
+| 2.4.2 Page Titled | Descriptive `<title>` | "ClearDay" | ✅ |
 | 2.4.3 Focus Order | Logical tab sequence | Verified in E2E | ✅ |
-| 2.4.6 Headings and Labels | Descriptive headings | `<h1>Clearday</h1>`, `<h2>To Do</h2>`, `<h2>Done</h2>` | ✅ |
+| 2.4.6 Headings and Labels | Descriptive headings | `<h1>ClearDay</h1>`, `<h2>To Do</h2>`, `<h2>Done</h2>` | ✅ |
 | 2.4.7 Focus Visible | Visible focus indicators | 2px `box-shadow` focus ring on all elements | ✅ |
 
 **Focus indicator CSS:**

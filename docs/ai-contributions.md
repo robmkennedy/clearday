@@ -1,6 +1,6 @@
-# AI Contributions — Clearday
+# AI Contributions — ClearDay
 
-**Project:** Clearday  
+**Project:** ClearDay  
 **Method:** [BMAD (Build Measure Analyze Deliver)](https://github.com/bmadcode/BMAD-METHOD)  
 **Date:** March 2026
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Clearday was built entirely through human–AI collaboration using the BMAD method. A human product owner directed the process while specialised AI agents performed discovery, design, implementation, testing, and documentation across every phase of the project lifecycle.
+ClearDay was built entirely through human–AI collaboration using the BMAD method. A human product owner directed the process while specialised AI agents performed discovery, design, implementation, testing, and documentation across every phase of the project lifecycle.
 
 ## How It Works
 

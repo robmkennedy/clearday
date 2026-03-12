@@ -1,6 +1,6 @@
 # Accessibility Audit & Guidelines
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.1  
 **Date:** March 5, 2026  
@@ -12,9 +12,9 @@
 
 ## Overview
 
-This document provides a comprehensive accessibility audit and implementation guidelines for Clearday v1.1. Accessibility isn't just compliance — it's about ensuring **everyone** can capture tasks instantly, regardless of ability.
+This document provides a comprehensive accessibility audit and implementation guidelines for ClearDay v1.1. Accessibility isn't just compliance — it's about ensuring **everyone** can capture tasks instantly, regardless of ability.
 
-### Why Accessibility Matters for Clearday
+### Why Accessibility Matters for ClearDay
 
 | User | Accessibility Need |
 |------|-------------------|
@@ -60,7 +60,7 @@ This document provides a comprehensive accessibility audit and implementation gu
 
 | Element | Text Alternative | Implementation |
 |---------|------------------|----------------|
-| App logo/icon | Alt text: "Clearday" | `<h1>` with text, or `aria-label` |
+| App logo/icon | Alt text: "ClearDay" | `<h1>` with text, or `aria-label` |
 | Checkbox unchecked | "Mark as complete" | `aria-label` on input |
 | Checkbox checked | "Marked as complete" | `aria-label` updates dynamically |
 | Delete button | "Delete task: [task text]" | `aria-label` with context |
@@ -158,7 +158,7 @@ This document provides a comprehensive accessibility audit and implementation gu
 <!-- Correct semantic structure -->
 <main>
   <header>
-    <h1>Clearday</h1>
+    <h1>ClearDay</h1>
   </header>
   
   <section aria-labelledby="add-task-heading">
@@ -360,7 +360,7 @@ input[type="checkbox"]:focus-visible {
 
 ### 2.2 Enough Time (WCAG 2.2)
 
-Clearday has no time limits. ✅ Compliant.
+ClearDay has no time limits. ✅ Compliant.
 
 - No session timeouts
 - No auto-refresh
@@ -450,7 +450,7 @@ For single-page app with simple structure, skip link is optional but recommended
 #### Page Title
 
 ```html
-<title>Clearday — Simple Task Management</title>
+<title>ClearDay — Simple Task Management</title>
 ```
 
 #### Focus Order
@@ -473,7 +473,7 @@ All interactive elements have clear purpose:
 Proper heading hierarchy:
 
 ```html
-<h1>Clearday</h1>
+<h1>ClearDay</h1>
 <!-- Visually hidden headings for screen readers -->
 <h2 class="visually-hidden">Add a task</h2>
 <h2 class="visually-hidden">Your tasks</h2>
@@ -734,7 +734,7 @@ Test with at least 2 screen readers:
 #### Page Load
 
 ```
-"Clearday"
+"ClearDay"
 "Add a new task, edit text"
 [If tasks exist] "Your tasks, list, X items"
 [If empty] "No tasks yet! Add your first task above to get started"
@@ -965,7 +965,7 @@ Include on the app (footer or about):
 ```markdown
 ## Accessibility
 
-Clearday is committed to accessibility. This application aims to 
+ClearDay is committed to accessibility. This application aims to 
 conform to WCAG 2.1 Level AA.
 
 ### Features:

@@ -1,6 +1,6 @@
 # Sprint 1 Test Plan
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.0  
 **Date:** March 5, 2026  

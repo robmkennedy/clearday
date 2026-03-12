@@ -1,4 +1,4 @@
-# Security Review Report — Clearday
+# Security Review Report — ClearDay
 
 **Date:** March 12, 2026  
 **Author:** Murat (TEA — Master Test Architect)  
@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-The Clearday application has a **solid security baseline** for a local todo app. Helmet is in place, CORS is configured, input is validated with Zod, and the ORM (Drizzle) prevents SQL injection. No known CVEs exist in any dependency.
+The ClearDay application has a **solid security baseline** for a local todo app. Helmet is in place, CORS is configured, input is validated with Zod, and the ORM (Drizzle) prevents SQL injection. No known CVEs exist in any dependency.
 
 The initial review identified **7 findings** across 3 severity levels. **All 7 findings have been remediated and verified** — all 235 tests (67 backend + 168 frontend) pass after the fixes.
 

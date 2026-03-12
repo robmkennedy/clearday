@@ -1,6 +1,6 @@
 # UX → Architecture Handoff Summary
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.0  
 **Date:** March 5, 2026  
@@ -12,7 +12,7 @@
 
 ## Executive Summary
 
-All UX design artifacts for Clearday v1.0 are **approved and ready for architecture**. This document summarizes the key design decisions and technical implications that should inform the architecture.
+All UX design artifacts for ClearDay v1.0 are **approved and ready for architecture**. This document summarizes the key design decisions and technical implications that should inform the architecture.
 
 ### Approved Artifacts
 

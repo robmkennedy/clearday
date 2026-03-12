@@ -1,4 +1,4 @@
-# Docker Containerization Report — Clearday Todo Application
+# Docker Containerization Report — ClearDay Todo Application
 
 **Generated:** 2026-03-12
 **Updated:** 2026-03-12
@@ -35,7 +35,7 @@
 
 ## 1. Overview
 
-The Clearday Todo application is containerized as a **two-service architecture** using Docker Compose. The monorepo workspace structure (`frontend/`, `backend/`, `shared/`) is respected during build, with each Dockerfile using the **project root as build context** to access cross-workspace dependencies.
+The ClearDay Todo application is containerized as a **two-service architecture** using Docker Compose. The monorepo workspace structure (`frontend/`, `backend/`, `shared/`) is respected during build, with each Dockerfile using the **project root as build context** to access cross-workspace dependencies.
 
 | Property | Value |
 |---|---|
@@ -152,8 +152,8 @@ COPY frontend/ frontend/
 RUN npm run build -w shared && npm run build -w frontend
 
 FROM nginx:1.27-alpine AS production
-LABEL maintainer="Clearday Team" \
-      description="Clearday Todo UI — React SPA served by Nginx" \
+LABEL maintainer="ClearDay Team" \
+      description="ClearDay Todo UI — React SPA served by Nginx" \
       org.opencontainers.image.source="https://github.com/clearday/clearday"
 RUN addgroup -g 1001 -S appgroup && \
     adduser  -S appuser -u 1001 -G appgroup
@@ -223,8 +223,8 @@ COPY frontend/package.json frontend/
 RUN npm ci --omit=dev && apk del python3 make g++
 
 FROM node:20-alpine AS production
-LABEL maintainer="Clearday Team" \
-      description="Clearday Todo API — Express + SQLite"
+LABEL maintainer="ClearDay Team" \
+      description="ClearDay Todo API — Express + SQLite"
 RUN addgroup -g 1001 -S nodejs && \
     adduser  -S nodejs -u 1001 -G nodejs
 WORKDIR /app
@@ -1045,5 +1045,5 @@ All endpoints confirmed working:
 
 ---
 
-*Report generated for the Clearday Todo Application Docker containerization effort.*
+*Report generated for the ClearDay Todo Application Docker containerization effort.*
 

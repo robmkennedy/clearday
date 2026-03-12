@@ -1,5 +1,5 @@
 # =============================================================================
-# Frontend Dockerfile — Clearday Todo UI
+# Frontend Dockerfile — ClearDay Todo UI
 # Multi-stage build | Nginx Alpine | Non-root user | Health check
 # Build context: project root (monorepo)
 # =============================================================================
@@ -36,8 +36,8 @@ RUN npm run build -w shared && npm run build -w frontend
 FROM nginx:1.27-alpine AS production
 
 # Metadata
-LABEL maintainer="Clearday Team" \
-      description="Clearday Todo UI — React SPA served by Nginx" \
+LABEL maintainer="ClearDay Team" \
+      description="ClearDay Todo UI — React SPA served by Nginx" \
       org.opencontainers.image.source="https://github.com/clearday/clearday"
 
 # Create non-root user

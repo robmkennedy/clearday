@@ -1,5 +1,5 @@
 # =============================================================================
-# Docker Compose — Clearday Todo Application
+# Docker Compose — ClearDay Todo Application
 # Orchestrates frontend (nginx) + backend (Express/SQLite) containers
 # =============================================================================
 #
@@ -46,7 +46,7 @@ volumes:
   todo-data:
     driver: local
     labels:
-      com.clearday.description: "SQLite database storage for Clearday todos"
+      com.clearday.description: "SQLite database storage for ClearDay todos"
 
 # ---------------------------------------------------------------------------
 # Services

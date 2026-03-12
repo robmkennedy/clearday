@@ -64,7 +64,7 @@ export function App() {
           </a>
           <header>
             <div className="container header-content">
-              <h1>Clearday</h1>
+              <h1>ClearDay</h1>
               <ThemeToggle />
             </div>
           </header>

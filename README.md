@@ -1,4 +1,4 @@
-# ☀️ Clearday
+# ☀️ ClearDay
 
 A simple, reliable todo application built with the [BMAD method](https://github.com/bmadcode/BMAD-METHOD). Full-stack TypeScript monorepo featuring a React frontend, Express API backend, and SQLite persistence — all containerised with Docker.
 
@@ -23,7 +23,7 @@ A simple, reliable todo application built with the [BMAD method](https://github.
 
 ## Overview
 
-Clearday is a full-stack todo application designed as a reference implementation of the BMAD (Build Measure Analyze Deliver) development method. It provides:
+ClearDay is a full-stack todo application designed as a reference implementation of the BMAD (Build Measure Analyze Deliver) development method. It provides:
 
 - **Task management** — create, complete, and delete todos
 - **Theme toggle** — light / dark mode with system preference detection
@@ -112,7 +112,7 @@ The frontend will be available at **http://localhost:5173** and the API at **htt
 
 ## Docker
 
-Clearday ships with a multi-environment Docker Compose setup.
+ClearDay ships with a multi-environment Docker Compose setup.
 
 ### Development
 

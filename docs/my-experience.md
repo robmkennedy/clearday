@@ -1,4 +1,4 @@
-# My Experience Building Clearday
+# My Experience Building ClearDay
 
 **Author:** Rob  
 **Date:** March 2026
@@ -7,7 +7,7 @@
 
 ## Overview
 
-Clearday was built entirely through human–AI collaboration using the BMAD method. These are my notes and observations from directing AI agents through discovery, design, implementation, and testing of a full-stack todo application.
+ClearDay was built entirely through human–AI collaboration using the BMAD method. These are my notes and observations from directing AI agents through discovery, design, implementation, and testing of a full-stack todo application.
 
 ---
 

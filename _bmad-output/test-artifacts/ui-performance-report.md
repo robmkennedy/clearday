@@ -1,4 +1,4 @@
-# UI Performance Report — Clearday
+# UI Performance Report — ClearDay
 
 **Date:** March 11, 2026
 **Author:** Murat (TEA — Master Test Architect)
@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-The Clearday application **passes all UI performance budgets** with significant headroom. Page load metrics are excellent — FCP under 140ms, zero layout shift, zero long tasks, and JS heap under 3.5MB. Interaction responsiveness is well within budget across all CRUD operations. No memory leaks detected after 10 add/delete cycles.
+The ClearDay application **passes all UI performance budgets** with significant headroom. Page load metrics are excellent — FCP under 140ms, zero layout shift, zero long tasks, and JS heap under 3.5MB. Interaction responsiveness is well within budget across all CRUD operations. No memory leaks detected after 10 add/delete cycles.
 
 **Verdict: ✅ PASS — All 10 performance tests green.**
 

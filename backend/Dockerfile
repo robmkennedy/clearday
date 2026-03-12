@@ -1,5 +1,5 @@
 # =============================================================================
-# Backend Dockerfile — Clearday Todo API
+# Backend Dockerfile — ClearDay Todo API
 # Multi-stage build | Non-root user | Health check | SQLite + better-sqlite3
 # Build context: project root (monorepo)
 # =============================================================================
@@ -57,8 +57,8 @@ RUN npm ci --omit=dev && \
 FROM node:20-alpine AS production
 
 # Metadata
-LABEL maintainer="Clearday Team" \
-      description="Clearday Todo API — Express + SQLite" \
+LABEL maintainer="ClearDay Team" \
+      description="ClearDay Todo API — Express + SQLite" \
       org.opencontainers.image.source="https://github.com/clearday/clearday"
 
 # Create non-root user

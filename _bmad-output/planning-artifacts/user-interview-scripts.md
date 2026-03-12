@@ -1,6 +1,6 @@
 # User Interview Scripts
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.1  
 **Date:** March 5, 2026  
@@ -29,7 +29,7 @@ This document contains interview scripts designed to validate our user personas 
 | **Recording** | Request permission to record audio |
 | **Environment** | Quiet, comfortable, no interruptions |
 | **Materials** | This script, notepad, recording device |
-| **Prototype** | Have Clearday open (or mockup ready) |
+| **Prototype** | Have ClearDay open (or mockup ready) |
 
 ### Interview Best Practices
 
@@ -194,11 +194,11 @@ Use these questions to recruit appropriate participants.
 
 ### Section 5: Concept Reaction (Optional - 5 minutes)
 
-*Goal: Test Clearday concept if prototype available*
+*Goal: Test ClearDay concept if prototype available*
 
 > "I'd like to show you a simple tool we're working on. Don't worry about being polite — honest feedback helps us make it better."
 
-*Show Clearday or mockup*
+*Show ClearDay or mockup*
 
 14. **"What's your first impression?"**
     - Note: Time to understand, emotional reaction
@@ -335,7 +335,7 @@ Use these questions to recruit appropriate participants.
 
 ### Section 5: Concept Reaction (Optional - 5 minutes)
 
-*Show Clearday or mockup*
+*Show ClearDay or mockup*
 
 16. **"Take a look at this. What's your gut reaction?"**
     - Note: Immediate response, facial expression
@@ -487,7 +487,7 @@ Use these questions to recruit appropriate participants.
 
 ### Section 6: Concept Reaction (Optional - 5 minutes)
 
-*Show Clearday or mockup*
+*Show ClearDay or mockup*
 
 18. **"Here's a simple task app — take a look and tell me what you think."**
     - Note: Immediate reaction, engagement

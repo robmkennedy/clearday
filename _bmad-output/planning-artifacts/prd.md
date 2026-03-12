@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD)
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.1
 **Date:** March 5, 2026
@@ -13,11 +13,11 @@
 
 ### 1.1 Purpose
 
-This document defines the product requirements for Clearday — a simple, full-stack Todo application designed to allow individual users to manage personal tasks in a clear, reliable, and intuitive way. The application focuses on clarity and ease of use, avoiding unnecessary features or complexity, while providing a solid technical foundation that can be extended in the future.
+This document defines the product requirements for ClearDay — a simple, full-stack Todo application designed to allow individual users to manage personal tasks in a clear, reliable, and intuitive way. The application focuses on clarity and ease of use, avoiding unnecessary features or complexity, while providing a solid technical foundation that can be extended in the future.
 
 ### 1.2 Scope
 
-This PRD covers the first version (v1.0) of the Clearday application. It defines the core task management functionality, user experience expectations, technical constraints, and non-functional requirements. Features explicitly excluded from v1.0 (such as authentication, collaboration, and prioritization) are documented as future considerations.
+This PRD covers the first version (v1.0) of the ClearDay application. It defines the core task management functionality, user experience expectations, technical constraints, and non-functional requirements. Features explicitly excluded from v1.0 (such as authentication, collaboration, and prioritization) are documented as future considerations.
 
 ### 1.3 Definitions & Acronyms
 

@@ -1,6 +1,6 @@
 # Jobs-to-be-Done Framework
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.1  
 **Date:** March 5, 2026  
@@ -11,14 +11,14 @@
 
 ## Overview
 
-This document defines the Jobs-to-be-Done (JTBD) for Clearday users. JTBD focuses on the underlying goals users are trying to accomplish, independent of specific solutions. Understanding these jobs helps ensure we build features that truly serve user needs.
+This document defines the Jobs-to-be-Done (JTBD) for ClearDay users. JTBD focuses on the underlying goals users are trying to accomplish, independent of specific solutions. Understanding these jobs helps ensure we build features that truly serve user needs.
 
 ### What is JTBD?
 
 > "People don't want a quarter-inch drill. They want a quarter-inch hole."
 > — Theodore Levitt
 
-Jobs-to-be-Done describes the progress users are trying to make in their lives. Users "hire" products to do jobs for them. Our goal is to understand these jobs deeply so Clearday gets hired — and keeps getting hired.
+Jobs-to-be-Done describes the progress users are trying to make in their lives. Users "hire" products to do jobs for them. Our goal is to understand these jobs deeply so ClearDay gets hired — and keeps getting hired.
 
 ### Related Documents
 - `user-personas.md` — Persona definitions
@@ -37,7 +37,7 @@ I want to [MOTIVATION]
 So I can [EXPECTED OUTCOME]
 ```
 
-**Clearday's Primary Job:**
+**ClearDay's Primary Job:**
 
 > **When I** have something I need to remember to do,  
 > **I want to** capture it instantly without friction,  
@@ -49,7 +49,7 @@ This is the foundational job. Everything else supports this.
 
 ## Job Categories
 
-We've identified three categories of jobs for Clearday:
+We've identified three categories of jobs for ClearDay:
 
 | Category | Description | Priority |
 |----------|-------------|----------|
@@ -545,7 +545,7 @@ Understanding the forces that push/pull users toward or away from switching.
 
 ### Reducing Friction
 
-To get users to "hire" Clearday, we must:
+To get users to "hire" ClearDay, we must:
 
 | Friction | Mitigation |
 |----------|------------|
@@ -560,7 +560,7 @@ To get users to "hire" Clearday, we must:
 
 How do alternatives perform on our key jobs?
 
-| Job | Sticky Notes | Apple Reminders | Todoist | Notion | Clearday Goal |
+| Job | Sticky Notes | Apple Reminders | Todoist | Notion | ClearDay Goal |
 |-----|--------------|-----------------|---------|--------|----------------|
 | F1: Capture Speed | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
 | F2: At-a-Glance | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
@@ -570,7 +570,7 @@ How do alternatives perform on our key jobs?
 | E1: Feel Control | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
 | E4: Feel Calm | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
 
-**Clearday's Opportunity:**
+**ClearDay's Opportunity:**
 - Beat sticky notes on persistence and organization
 - Beat complex apps on speed and simplicity
 - Match cloud apps on reliability
@@ -619,7 +619,7 @@ When building features, reference the Job Stories (JS-1 through JS-9) and their 
 
 ## Summary
 
-Clearday exists to fulfill one primary job:
+ClearDay exists to fulfill one primary job:
 
 > **Help users capture tasks instantly so they can free their minds and trust nothing will be forgotten.**
 

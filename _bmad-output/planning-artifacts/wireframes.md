@@ -1,6 +1,6 @@
 # Wireframes & UI Specifications
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.1  
 **Date:** March 5, 2026  
@@ -11,7 +11,7 @@
 
 ## Overview
 
-This document contains low-fidelity wireframes and UI specifications for Clearday v1.0. These wireframes are designed to fulfill the jobs identified in `jobs-to-be-done.md`, particularly:
+This document contains low-fidelity wireframes and UI specifications for ClearDay v1.0. These wireframes are designed to fulfill the jobs identified in `jobs-to-be-done.md`, particularly:
 
 - **F1:** Capture tasks instantly (< 10 seconds)
 - **F2:** See all tasks at a glance
@@ -35,11 +35,11 @@ This document contains low-fidelity wireframes and UI specifications for Clearda
 
 ### Screen Inventory
 
-Clearday v1.0 has exactly **one screen** with multiple states:
+ClearDay v1.0 has exactly **one screen** with multiple states:
 
 ```
 ┌─────────────────────────────────────┐
-│           Clearday App             │
+│           ClearDay App             │
 ├─────────────────────────────────────┤
 │                                     │
 │  ┌─────────────────────────────┐   │
@@ -78,7 +78,7 @@ The first thing a new user sees. Must communicate purpose instantly.
 │                                                                            │
 │                              ╭──────────────────────────────────────╮      │
 │                              │                                      │      │
-│                              │            📝 Clearday              │      │
+│                              │            📝 ClearDay              │      │
 │                              │                                      │      │
 │                              ╰──────────────────────────────────────╯      │
 │                                                                            │
@@ -133,7 +133,7 @@ The primary view users will see during daily use. Tasks are organized into two s
 │                                                                            │
 │                                                                            │
 │                              ╭──────────────────────────────────────╮      │
-│                              │            📝 Clearday              │      │
+│                              │            📝 ClearDay              │      │
 │                              ╰──────────────────────────────────────╯      │
 │                                                                            │
 │         ┌────────────────────────────────────────────────────────┐        │
@@ -249,7 +249,7 @@ Shown briefly while fetching tasks.
 ┌────────────────────────────────────────────────────────────────────────────┐
 │                                                                            │
 │                              ╭──────────────────────────────────────╮      │
-│                              │            📝 Clearday              │      │
+│                              │            📝 ClearDay              │      │
 │                              ╰──────────────────────────────────────╯      │
 │                                                                            │
 │         ┌────────────────────────────────────────────────────────┐        │
@@ -289,7 +289,7 @@ Shown when API fails to load tasks.
 ┌────────────────────────────────────────────────────────────────────────────┐
 │                                                                            │
 │                              ╭──────────────────────────────────────╮      │
-│                              │            📝 Clearday              │      │
+│                              │            📝 ClearDay              │      │
 │                              ╰──────────────────────────────────────╯      │
 │                                                                            │
 │         ┌────────────────────────────────────────────────────────┐        │
@@ -329,7 +329,7 @@ Responsive design for phones (< 768px).
 ```
 ┌─────────────────────────────┐
 │                             │
-│       📝 Clearday          │
+│       📝 ClearDay          │
 │                             │
 ├─────────────────────────────┤
 │                             │
@@ -372,7 +372,7 @@ Responsive design for phones (< 768px).
 
 ```
 ┌─────────────────────────────┐
-│       📝 Clearday          │
+│       📝 ClearDay          │
 ├─────────────────────────────┤
 │                             │
 │ ┌─────────────────────────┐ │
@@ -421,7 +421,7 @@ Shows keyboard state with input at top for thumb access.
 
 ```
 ┌─────────────────────────────┐
-│       📝 Clearday          │
+│       📝 ClearDay          │
 ├─────────────────────────────┤
 │                             │
 │ ┌─────────────────────────┐ │
@@ -713,14 +713,14 @@ COMPLETED:
 ```
 LIGHT MODE HEADER:
 ┌────────────────────────────────────────────────────────────────────────────┐
-│                        📝 Clearday                          [☀️]          │
+│                        📝 ClearDay                          [☀️]          │
 └────────────────────────────────────────────────────────────────────────────┘
                                                                 │
                                                                 └── Theme toggle
 
 DARK MODE HEADER:
 ┌────────────────────────────────────────────────────────────────────────────┐
-│                        📝 Clearday                          [🌙]          │
+│                        📝 ClearDay                          [🌙]          │
 └────────────────────────────────────────────────────────────────────────────┘
                                                                 │
                                                                 └── Theme toggle
@@ -775,7 +775,7 @@ const getInitialTheme = () => {
 ┌────────────────────────────────────────────────────────────────────────────┐
 │ ██████████████████████████████████████████████████████████████████████████ │
 │ █                                                              [🌙]      █ │
-│ █                         📝 Clearday                                   █ │
+│ █                         📝 ClearDay                                   █ │
 │ █                                                                        █ │
 │ █      ┌────────────────────────────────────────────────────────┐       █ │
 │ █      │  ○  What needs to be done?                         [+] │       █ │

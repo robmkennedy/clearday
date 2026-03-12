@@ -1,6 +1,6 @@
 # User Personas
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.1  
 **Date:** March 5, 2026  
@@ -11,9 +11,9 @@
 
 ## Overview
 
-This document defines the primary user personas for Clearday. These personas are based on the PRD's target user definition and represent the key user archetypes who will benefit from a zero-friction, immediately usable task management experience.
+This document defines the primary user personas for ClearDay. These personas are based on the PRD's target user definition and represent the key user archetypes who will benefit from a zero-friction, immediately usable task management experience.
 
-Since Clearday v1.0 focuses on **individual users** with **no authentication**, our personas reflect people who need simple, reliable personal task management without complexity.
+Since ClearDay v1.0 focuses on **individual users** with **no authentication**, our personas reflect people who need simple, reliable personal task management without complexity.
 
 ---
 
@@ -75,7 +75,7 @@ Maya juggles multiple campaigns, client meetings, and cross-functional projects.
 
 ### Success Metrics
 
-Maya would consider Clearday successful if:
+Maya would consider ClearDay successful if:
 - ✅ She can add a task in under 5 seconds
 - ✅ She stops using sticky notes
 - ✅ She can access her list on phone and laptop
@@ -149,7 +149,7 @@ David left agency life for freelance work, valuing autonomy and focus. He's deli
 
 ### Success Metrics
 
-David would consider Clearday successful if:
+David would consider ClearDay successful if:
 - ✅ The interface is clean and calming
 - ✅ There are no unnecessary features
 - ✅ He feels in control, not overwhelmed
@@ -224,7 +224,7 @@ Jordan is a junior CS major juggling coursework, a part-time campus job, hackath
 
 ### Success Metrics
 
-Jordan would consider Clearday successful if:
+Jordan would consider ClearDay successful if:
 - ✅ They can add a task faster than opening Notion
 - ✅ It works offline or with poor WiFi
 - ✅ It looks modern and well-designed
@@ -256,7 +256,7 @@ Jordan would consider Clearday successful if:
 
 ## Design Principles Derived from Personas
 
-Based on these personas, Clearday should embody:
+Based on these personas, ClearDay should embody:
 
 ### 1. ⚡ Instant Usability
 > No signup, no onboarding, no learning curve. Open → Use.

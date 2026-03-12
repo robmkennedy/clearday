@@ -1,6 +1,6 @@
-# AI Interactions — Clearday
+# AI Interactions — ClearDay
 
-**Project:** Clearday  
+**Project:** ClearDay  
 **Method:** [BMAD (Build Measure Analyze Deliver)](https://github.com/bmadcode/BMAD-METHOD)  
 **Date:** March 2026
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This document records the sequence of human–AI interactions that produced the Clearday application. Each entry represents a distinct session where the human product owner activated a BMAD agent, directed a workflow, and approved the resulting artifacts.
+This document records the sequence of human–AI interactions that produced the ClearDay application. Each entry represents a distinct session where the human product owner activated a BMAD agent, directed a workflow, and approved the resulting artifacts.
 
 ## Interaction Timeline
 

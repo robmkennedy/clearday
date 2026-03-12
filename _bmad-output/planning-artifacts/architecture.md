@@ -9,7 +9,7 @@ date: '2026-03-05'
 
 # Architecture Document
 
-## Clearday Application
+## ClearDay Application
 
 **Version:** 1.3  
 **Date:** March 5, 2026  
@@ -22,7 +22,7 @@ date: '2026-03-05'
 
 ## 1. Executive Summary
 
-This document defines the technical architecture for Clearday — a single-user task management application prioritizing simplicity, reliability, and developer ergonomics. The architecture employs a modern, minimal stack that satisfies all PRD requirements while remaining easy to understand, deploy, and extend.
+This document defines the technical architecture for ClearDay — a single-user task management application prioritizing simplicity, reliability, and developer ergonomics. The architecture employs a modern, minimal stack that satisfies all PRD requirements while remaining easy to understand, deploy, and extend.
 
 ### 1.1 Architecture Philosophy
 
@@ -388,7 +388,7 @@ interface ApiError {
 ```
 App
 ├── Header
-│   ├── App title ("📝 Clearday")
+│   ├── App title ("📝 ClearDay")
 │   └── ThemeToggle (sun/moon icon, toggles light/dark mode)
 ├── TodoInput
 │   └── Input field + Add button
