@@ -1,16 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import type { Todo } from '@shared/types';
-
-/**
- * Fetch all todos from API
- */
-async function fetchTodos(): Promise<Todo[]> {
-  const response = await fetch('/api/todos');
-  if (!response.ok) {
-    throw new Error('Failed to fetch todos');
-  }
-  return response.json();
-}
+import { apiFetchTodos } from '../api/todoApi';
 
 /**
  * Query key for todos - exported for use in mutations
@@ -25,7 +14,7 @@ export const todosQueryKey = ['todos'] as const;
 export function useTodos() {
   const query = useQuery({
     queryKey: todosQueryKey,
-    queryFn: fetchTodos,
+    queryFn: apiFetchTodos,
   });
 
   return {

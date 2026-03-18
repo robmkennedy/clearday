@@ -1,21 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { todosQueryKey } from './useTodos';
 import type { OptimisticTodo } from './useAddTodo';
-
-/**
- * Toggle todo completion via API
- */
-async function toggleTodo(id: string, completed: boolean): Promise<OptimisticTodo> {
-  const response = await fetch(`/api/todos/${id}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ completed }),
-  });
-  if (!response.ok) {
-    throw new Error('Failed to update todo');
-  }
-  return response.json();
-}
+import { apiToggleTodo } from '../api/todoApi';
 
 /**
  * Context type for mutation rollback
@@ -41,7 +27,7 @@ export function useToggleTodo(options?: { onError?: (error: Error) => void }) {
 
   return useMutation({
     mutationFn: ({ id, completed }: { id: string; completed: boolean }) =>
-      toggleTodo(id, completed),
+      apiToggleTodo(id, completed),
 
     // Optimistic update: toggle completion in cache before API call
     onMutate: async ({ id, completed }): Promise<ToggleTodoContext> => {

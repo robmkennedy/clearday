@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { todosQueryKey } from './useTodos';
 import type { Todo } from '@shared/types';
+import { apiCreateTodo } from '../api/todoApi';
 
 /**
  * Extended Todo type with pending state for optimistic updates
@@ -9,20 +10,6 @@ export interface OptimisticTodo extends Todo {
   isPending?: boolean;
 }
 
-/**
- * Create a new todo via API
- */
-async function createTodo(text: string): Promise<Todo> {
-  const response = await fetch('/api/todos', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text }),
-  });
-  if (!response.ok) {
-    throw new Error('Failed to create todo');
-  }
-  return response.json();
-}
 
 /**
  * Context type for mutation rollback
@@ -47,7 +34,7 @@ export function useAddTodo(options?: { onError?: (error: Error) => void }) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: createTodo,
+    mutationFn: apiCreateTodo,
 
     // Optimistic update: add temp todo to cache before API call
     onMutate: async (text: string): Promise<AddTodoContext> => {

@@ -143,6 +143,29 @@ npm run docker:test
 
 Runs backend with `NODE_ENV=test` using an ephemeral tmpfs database — data is destroyed when the container stops.
 
+## GitHub Pages (Static Demo)
+
+The frontend can be deployed to GitHub Pages as a standalone static demo. When no backend is reachable, the app automatically falls back to **localStorage** for data persistence — fully functional with no server required.
+
+### Automatic Deployment
+
+A GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) builds and deploys on every push to `main`.
+
+**To enable:**
+
+1. Go to your repo **Settings → Pages**
+2. Set **Source** to **GitHub Actions**
+3. Push to `main` — the workflow deploys automatically
+
+Your site will be live at `https://<username>.github.io/clearday/`.
+
+### Manual Build
+
+```bash
+npm run build:pages -w frontend
+# Output: frontend/dist (includes 404.html for SPA routing)
+```
+
 ## Testing
 
 ### Unit & Component Tests

@@ -50,7 +50,7 @@ describe('App Component', () => {
     await act(async () => {
       render(<App />);
     });
-    expect(screen.getByRole('heading', { name: /bmad todo/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /clearday/i })).toBeInTheDocument();
   });
 
   it('shows empty state message when no todos', async () => {

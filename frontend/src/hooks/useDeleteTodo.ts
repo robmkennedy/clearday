@@ -1,19 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { todosQueryKey } from './useTodos';
 import type { OptimisticTodo } from './useAddTodo';
-
-/**
- * Delete todo via API
- */
-async function deleteTodo(id: string): Promise<void> {
-  const response = await fetch(`/api/todos/${id}`, {
-    method: 'DELETE',
-  });
-  if (!response.ok) {
-    throw new Error('Failed to delete todo');
-  }
-  // DELETE returns 204 No Content
-}
+import { apiDeleteTodo } from '../api/todoApi';
 
 /**
  * Context type for mutation rollback
@@ -37,7 +25,7 @@ export function useDeleteTodo(options?: { onError?: (error: Error) => void }) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: deleteTodo,
+    mutationFn: apiDeleteTodo,
 
     // Optimistic update: remove todo from cache before API call
     onMutate: async (id: string): Promise<DeleteTodoContext> => {
