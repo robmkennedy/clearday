@@ -73,6 +73,17 @@ export function App() {
               <TodoContent />
             </div>
           </main>
+          <footer>
+            <div className="container footer-content">
+              <a
+                href="https://github.com/robmkennedy/clearday#readme"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                README
+              </a>
+            </div>
+          </footer>
         </div>
         <ToastContainer />
       </ToastProvider>
