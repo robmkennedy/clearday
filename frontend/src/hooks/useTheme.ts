@@ -19,11 +19,11 @@ const isBrowser = typeof window !== 'undefined';
  * Get the initial theme based on priority:
  * 1. User preference saved in localStorage
  * 2. System preference via prefers-color-scheme
- * 3. Default to 'light'
+ * 3. Default to 'dark'
  */
 function getInitialTheme(): Theme {
   if (!isBrowser) {
-    return 'light';
+    return 'dark';
   }
 
   // 1. Check localStorage for saved preference
@@ -33,12 +33,12 @@ function getInitialTheme(): Theme {
   }
 
   // 2. Check system preference
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
+  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    return 'light';
   }
 
-  // 3. Default to light
-  return 'light';
+  // 3. Default to dark
+  return 'dark';
 }
 
 /**
@@ -98,10 +98,10 @@ export interface UseThemeReturn {
  * @example
  * ```tsx
  * function ThemeToggle() {
- *   const { theme, toggleTheme, isDark } = useTheme();
+ *   const { toggleTheme, isDark } = useTheme();
  *   return (
- *     <button onClick={toggleTheme}>
- *       {isDark ? '🌙' : '☀️'}
+ *     <button role="switch" aria-checked={isDark} onClick={toggleTheme}>
+ *       ☀️ / 🌙
  *     </button>
  *   );
  * }

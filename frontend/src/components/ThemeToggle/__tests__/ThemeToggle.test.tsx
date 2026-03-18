@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeToggle } from '../ThemeToggle';
 import {
@@ -11,9 +11,10 @@ import {
  * ThemeToggle component tests
  *
  * Tests cover:
- * - Icon display per theme
+ * - Toggle switch renders with role="switch"
+ * - Both sun and moon icons are always displayed
  * - Click toggles theme
- * - ARIA labels
+ * - ARIA labels and aria-checked
  * - Keyboard accessibility
  */
 
@@ -52,20 +53,20 @@ describe('ThemeToggle', () => {
   });
 
   describe('icon display', () => {
-    it('S4-002-AC1: displays sun icon (☀️) when in light mode', () => {
+    it('S4-002-AC1: displays both sun and moon icons', () => {
       localStorageMock._setStore({ 'clearday-theme': 'light' });
 
       render(<ThemeToggle />);
 
       expect(screen.getByText('☀️')).toBeInTheDocument();
+      expect(screen.getByText('🌙')).toBeInTheDocument();
     });
 
-    it('S4-002-AC2: displays moon icon (🌙) when in dark mode', () => {
-      localStorageMock._setStore({ 'clearday-theme': 'dark' });
-
+    it('both icons are hidden from screen readers (aria-hidden)', () => {
       render(<ThemeToggle />);
 
-      expect(screen.getByText('🌙')).toBeInTheDocument();
+      expect(screen.getByText('☀️')).toHaveAttribute('aria-hidden', 'true');
+      expect(screen.getByText('🌙')).toHaveAttribute('aria-hidden', 'true');
     });
   });
 
@@ -78,14 +79,14 @@ describe('ThemeToggle', () => {
         render(<ThemeToggle />);
       });
 
-      const button = screen.getByTestId('theme-toggle');
-      expect(screen.getByText('☀️')).toBeInTheDocument();
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('aria-checked', 'false');
 
       await act(async () => {
-        await user.click(button);
+        await user.click(toggle);
       });
 
-      expect(screen.getByText('🌙')).toBeInTheDocument();
+      expect(toggle).toHaveAttribute('aria-checked', 'true');
     });
 
     it('S4-002-AC3: switches from dark to light on click', async () => {
@@ -96,14 +97,14 @@ describe('ThemeToggle', () => {
         render(<ThemeToggle />);
       });
 
-      const button = screen.getByTestId('theme-toggle');
-      expect(screen.getByText('🌙')).toBeInTheDocument();
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('aria-checked', 'true');
 
       await act(async () => {
-        await user.click(button);
+        await user.click(toggle);
       });
 
-      expect(screen.getByText('☀️')).toBeInTheDocument();
+      expect(toggle).toHaveAttribute('aria-checked', 'false');
     });
 
     it('updates localStorage when toggled', async () => {
@@ -123,13 +124,20 @@ describe('ThemeToggle', () => {
   });
 
   describe('accessibility', () => {
+    it('has role="switch"', () => {
+      render(<ThemeToggle />);
+
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('role', 'switch');
+    });
+
     it('S4-002-AC5: has aria-label "Switch to dark mode" when in light mode', () => {
       localStorageMock._setStore({ 'clearday-theme': 'light' });
 
       render(<ThemeToggle />);
 
-      const button = screen.getByTestId('theme-toggle');
-      expect(button).toHaveAttribute('aria-label', 'Switch to dark mode');
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('aria-label', 'Switch to dark mode');
     });
 
     it('S4-002-AC5: has aria-label "Switch to light mode" when in dark mode', () => {
@@ -137,29 +145,40 @@ describe('ThemeToggle', () => {
 
       render(<ThemeToggle />);
 
-      const button = screen.getByTestId('theme-toggle');
-      expect(button).toHaveAttribute('aria-label', 'Switch to light mode');
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('aria-label', 'Switch to light mode');
+    });
+
+    it('aria-checked is false in light mode', () => {
+      localStorageMock._setStore({ 'clearday-theme': 'light' });
+
+      render(<ThemeToggle />);
+
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('aria-checked', 'false');
+    });
+
+    it('aria-checked is true in dark mode', () => {
+      localStorageMock._setStore({ 'clearday-theme': 'dark' });
+
+      render(<ThemeToggle />);
+
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('aria-checked', 'true');
     });
 
     it('is a button element', () => {
       render(<ThemeToggle />);
 
-      const button = screen.getByTestId('theme-toggle');
-      expect(button.tagName).toBe('BUTTON');
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle.tagName).toBe('BUTTON');
     });
 
     it('has type="button" to prevent form submission', () => {
       render(<ThemeToggle />);
 
-      const button = screen.getByTestId('theme-toggle');
-      expect(button).toHaveAttribute('type', 'button');
-    });
-
-    it('icon is hidden from screen readers (aria-hidden)', () => {
-      render(<ThemeToggle />);
-
-      const icon = screen.getByText('☀️');
-      expect(icon).toHaveAttribute('aria-hidden', 'true');
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('type', 'button');
     });
   });
 
@@ -172,14 +191,14 @@ describe('ThemeToggle', () => {
         render(<ThemeToggle />);
       });
 
-      const button = screen.getByTestId('theme-toggle');
-      button.focus();
+      const toggle = screen.getByTestId('theme-toggle');
+      toggle.focus();
 
       await act(async () => {
         await user.keyboard('{Enter}');
       });
 
-      expect(screen.getByText('🌙')).toBeInTheDocument();
+      expect(toggle).toHaveAttribute('aria-checked', 'true');
     });
 
     it('S4-002-AC8: can be activated with Space key', async () => {
@@ -190,14 +209,14 @@ describe('ThemeToggle', () => {
         render(<ThemeToggle />);
       });
 
-      const button = screen.getByTestId('theme-toggle');
-      button.focus();
+      const toggle = screen.getByTestId('theme-toggle');
+      toggle.focus();
 
       await act(async () => {
         await user.keyboard(' ');
       });
 
-      expect(screen.getByText('🌙')).toBeInTheDocument();
+      expect(toggle).toHaveAttribute('aria-checked', 'true');
     });
 
     it('is focusable via Tab', async () => {
@@ -205,12 +224,12 @@ describe('ThemeToggle', () => {
         render(<ThemeToggle />);
       });
 
-      const button = screen.getByTestId('theme-toggle');
+      const toggle = screen.getByTestId('theme-toggle');
 
       // Tab into the button
       await userEvent.tab();
 
-      expect(button).toHaveFocus();
+      expect(toggle).toHaveFocus();
     });
   });
 
@@ -223,14 +242,14 @@ describe('ThemeToggle', () => {
         render(<ThemeToggle />);
       });
 
-      const button = screen.getByTestId('theme-toggle');
-      expect(button).toHaveAttribute('aria-label', 'Switch to dark mode');
+      const toggle = screen.getByTestId('theme-toggle');
+      expect(toggle).toHaveAttribute('aria-label', 'Switch to dark mode');
 
       await act(async () => {
-        await user.click(button);
+        await user.click(toggle);
       });
 
-      expect(button).toHaveAttribute('aria-label', 'Switch to light mode');
+      expect(toggle).toHaveAttribute('aria-label', 'Switch to light mode');
     });
   });
 });

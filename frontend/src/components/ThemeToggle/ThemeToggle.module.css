@@ -1,46 +1,106 @@
+/* Toggle switch container */
 .toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Minimum 44x44px touch target for accessibility */
+  /* Minimum 44px touch target for accessibility */
   min-width: var(--touch-target-min);
   min-height: var(--touch-target-min);
-  padding: var(--spacing-sm);
+  padding: 0;
   background: transparent;
   border: none;
-  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background-color var(--transition-fast);
-}
-
-.toggle:hover {
-  background-color: var(--color-hover);
 }
 
 .toggle:focus-visible {
   outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline-offset: 4px;
+  border-radius: var(--radius-full);
 }
 
-.toggle:active {
+/* Track */
+.track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 28px;
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.dark .track {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Icons inside the track */
+.iconLeft,
+.iconRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.iconLeft {
+  left: 5px;
+}
+
+.iconRight {
+  right: 5px;
+}
+
+/* Knob */
+.knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.dark .knob {
+  transform: translateX(28px);
+}
+
+/* Hover effect on track */
+.toggle:hover .track {
+  border-color: var(--color-primary-hover);
+}
+
+.toggle:active .knob {
   transform: scale(0.95);
 }
 
-.icon {
-  font-size: 1.5rem;
-  line-height: 1;
-  /* Prevent emoji color from being affected by text color */
-  user-select: none;
+.dark.toggle:active .knob {
+  transform: translateX(28px) scale(0.95);
 }
 
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .toggle {
+  .knob,
+  .track {
     transition: none;
   }
 
-  .toggle:active {
+  .toggle:active .knob,
+  .dark.toggle:active .knob {
     transform: none;
+  }
+
+  .dark .knob {
+    transform: translateX(28px);
   }
 }
 

@@ -36,21 +36,21 @@ baseTest.describe('Theme Toggle', () => {
 
     // Initial state should be light (no saved preference, system default)
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-    await expect(toggle).toHaveText('☀️');
+    await expect(toggle).toHaveAttribute('aria-checked', 'false');
     await expect(toggle).toHaveAttribute('aria-label', 'Switch to dark mode');
 
     // Click to switch to dark
     await toggle.click();
 
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-    await expect(toggle).toHaveText('🌙');
+    await expect(toggle).toHaveAttribute('aria-checked', 'true');
     await expect(toggle).toHaveAttribute('aria-label', 'Switch to light mode');
 
     // Click again to switch back to light
     await toggle.click();
 
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-    await expect(toggle).toHaveText('☀️');
+    await expect(toggle).toHaveAttribute('aria-checked', 'false');
   });
 
   baseTest('theme toggle is keyboard accessible @p1', async ({ page }) => {
@@ -108,7 +108,7 @@ baseTest.describe('Theme Persistence', () => {
 
     // Theme should still be dark
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-    await expect(toggle).toHaveText('🌙');
+    await expect(toggle).toHaveAttribute('aria-checked', 'true');
   });
 });
 
@@ -129,7 +129,7 @@ baseTest.describe('System Preference Detection', () => {
 
     // Should detect system dark preference
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-    await expect(page.getByTestId('theme-toggle')).toHaveText('🌙');
+    await expect(page.getByTestId('theme-toggle')).toHaveAttribute('aria-checked', 'true');
 
     await context.close();
   });
@@ -150,7 +150,7 @@ baseTest.describe('System Preference Detection', () => {
 
     // Should detect system light preference
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-    await expect(page.getByTestId('theme-toggle')).toHaveText('☀️');
+    await expect(page.getByTestId('theme-toggle')).toHaveAttribute('aria-checked', 'false');
 
     await context.close();
   });
@@ -171,7 +171,7 @@ baseTest.describe('System Preference Detection', () => {
 
     // User preference (light) should override system preference (dark)
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-    await expect(page.getByTestId('theme-toggle')).toHaveText('☀️');
+    await expect(page.getByTestId('theme-toggle')).toHaveAttribute('aria-checked', 'false');
 
     await context.close();
   });
