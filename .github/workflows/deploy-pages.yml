@@ -33,6 +33,15 @@ jobs:
           GITHUB_PAGES: 'true'
         run: npm run build -w frontend
 
+      - name: Add .nojekyll
+        run: touch frontend/dist/.nojekyll
+
+      - name: Copy 404.html for SPA routing
+        run: cp frontend/dist/index.html frontend/dist/404.html
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
